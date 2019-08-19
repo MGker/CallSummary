@@ -1,0 +1,33 @@
+spring:
+#  application:
+#    name: CALLSUMMARY
+  datasource:
+#    name: dclog
+#    url: jdbc:mysql://192.168.6.24:3306/rlog?useSSL=false
+#    username: RLOG
+#    password: RLOG1234
+    url: jdbc:mysql://172.17.226.117:3306/rlog?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+    username: RLOG
+    password: Cup&95516
+    type: com.zaxxer.hikari.HikariDataSource
+    test-while-idle: true
+    hikari:
+      idle-timeout: 600000
+      maximum-pool-size: 5
+      minimum-idle: 1
+      connection-test-query: SELECT 'x' FROM DUAL
+      pool-name: dcQmPol
+      max-lifetime: 1800000
+      connection-timeout: 3000
+      driver-class-name: com.mysql.jdbc.Driver
+  aop:
+    auto: true
+  thymeleaf:
+    encoding: UTF-8
+    mode: HTML5
+    cache: false
+  resources:
+    cache-period: 0
+mybatis:
+  mapperLocations: classpath*:/mapper/*.xml
+

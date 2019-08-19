@@ -1,0 +1,1113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.callsummary.mapper.CallSummaryMapper">
+  <resultMap id="BaseResultMap" type="com.callsummary.model.CallSummary">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="CALLREFERENCE" jdbcType="VARCHAR" property="callreference" />
+    <result column="CARD_NO" jdbcType="VARCHAR" property="card_no" />
+    <result column="TRANS_DT" jdbcType="VARCHAR" property="trans_dt" />
+    <result column="CMPLOYEE_NO" jdbcType="VARCHAR" property="cmployee_no" />
+    <result column="CALL_IN_NO" jdbcType="VARCHAR" property="call_in_no" />
+    <result column="SERVICE_TYPE1" jdbcType="VARCHAR" property="service_type1" />
+    <result column="SERVICE_TYPE" jdbcType="VARCHAR" property="service_type" />
+    <result column="SERVICE_TYPE3" jdbcType="VARCHAR" property="service_type3" />
+    <result column="SERVICE_TYPE4" jdbcType="VARCHAR" property="service_type4" />
+    <result column="SERVICE_TYPE5" jdbcType="VARCHAR" property="service_type5" />
+    <result column="SERVICE_TYPE6" jdbcType="VARCHAR" property="service_type6" />
+    <result column="SERVICE_TYPE7" jdbcType="VARCHAR" property="service_type7" />
+    <result column="CTI_NO" jdbcType="VARCHAR" property="cti_no" />
+    <result column="IN_CARD_NO" jdbcType="VARCHAR" property="in_card_no" />
+    <result column="IC_CARD_FLAG" jdbcType="VARCHAR" property="ic_card_flag" />
+    <result column="CUST_TYPE" jdbcType="VARCHAR" property="cust_type" />
+    <result column="CUST_IDENTITY" jdbcType="VARCHAR" property="cust_identity" />
+    <result column="CTI_CALL_TYPE" jdbcType="VARCHAR" property="cti_call_type" />
+    <result column="LANGUAGE" jdbcType="VARCHAR" property="language" />
+    <result column="ONE_FINISH_FLAG" jdbcType="VARCHAR" property="one_finish_flag" />
+    <result column="CALL_OUT_NO" jdbcType="VARCHAR" property="call_out_no" />
+    <result column="EXTENSION" jdbcType="VARCHAR" property="extension" />
+    <result column="CALL_AGENT_ID" jdbcType="VARCHAR" property="call_agent_id" />
+    <result column="MAKEUP_FLAG" jdbcType="VARCHAR" property="makeup_flag" />
+    <result column="SATISFYS_FLAG" jdbcType="VARCHAR" property="satisfys_flag" />
+    <result column="CALL_TYPE" jdbcType="VARCHAR" property="call_type" />
+    <result column="CUST_PHONE" jdbcType="VARCHAR" property="cust_phone" />
+    <result column="CALL_TIMES" jdbcType="VARCHAR" property="call_times" />
+    <result column="CALL_END_TIME" jdbcType="VARCHAR" property="call_end_time" />
+    <result column="CALL_START_TIME" jdbcType="VARCHAR" property="call_start_time" />
+    <result column="RECORD_FINISH_TIME" jdbcType="VARCHAR" property="record_finish_time" />
+    <result column="ACTIVITY_FLAG" jdbcType="VARCHAR" property="activity_flag" />
+    <result column="PAY_METHTEMPLET" jdbcType="VARCHAR" property="pay_methtemplet" />
+    <result column="MNCH_METHTEMPLET" jdbcType="VARCHAR" property="mnch_methtemplet" />
+    <result column="REPEAT_PHONE" jdbcType="VARCHAR" property="repeat_phone" />
+    <result column="CMPLOYEE_NM" jdbcType="VARCHAR" property="cmployee_nm" />
+    <result column="REPEAT_PHONE_TIME" jdbcType="VARCHAR" property="repeat_phone_time" />
+    <result column="REPEAT_NUM" jdbcType="VARCHAR" property="repeat_num" />
+    <result column="CONFERENCE_NUM" jdbcType="VARCHAR" property="conferenceNum" />
+    <result column="SATISFYS_NUM" jdbcType="VARCHAR" property="satisfys_num" />
+    <result column="BUSINESS_AREA_PRO1" jdbcType="VARCHAR" property="business_area_pro1" />
+    <result column="BUSINESS_AREA_PRO2" jdbcType="VARCHAR" property="business_area_pro2" />
+    <result column="ACQ_INS_ID_CD" jdbcType="VARCHAR" property="acq_ins_id_cd" />
+    <result column="ACTIVITY_NAME" jdbcType="VARCHAR" property="activity_name" />
+    <result column="TERM_INS_ID_CD" jdbcType="VARCHAR" property="term_ins_id_cd" />
+    <result column="ERROR_CODE" jdbcType="VARCHAR" property="error_code" />
+    <result column="CALL_BACK_NUMBER" jdbcType="VARCHAR" property="call_back_number" />
+    <result column="REMARKS" jdbcType="VARCHAR" property="remarks" />
+    <result column="CARD_RANK" jdbcType="VARCHAR" property="card_rank" />
+    <result column="ISS_INS_ID" jdbcType="VARCHAR" property="iss_ins_id" />
+    <result column="INS_CN_NM" jdbcType="VARCHAR" property="ins_cn_nm" />
+    <result column="CTI_MCHNT_CD" jdbcType="VARCHAR" property="cti_mchnt_cd" />
+    <result column="CTI_INS_ID_CD" jdbcType="VARCHAR" property="cti_ins_id_cd" />
+    <result column="MCHNT_NM" jdbcType="VARCHAR" property="mchnt_nm" />
+    <result column="CTI_INS_ID_NM" jdbcType="VARCHAR" property="cti_ins_id_nm" />
+    <result column="IVR_URL" jdbcType="VARCHAR" property="ivr_url" />
+    <result column="OUT_BANK" jdbcType="VARCHAR" property="out_bank" />
+    <result column="OUT_CARD_NUMBER" jdbcType="VARCHAR" property="out_card_number" />
+    <result column="IS_OWN" jdbcType="VARCHAR" property="is_own" />
+    <result column="DEAL_TYPE" jdbcType="VARCHAR" property="deal_type" />
+    <result column="ACTIVITY_ID" jdbcType="VARCHAR" property="activity_id" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, CALLREFERENCE, CARD_NO, TRANS_DT, CMPLOYEE_NO, CALL_IN_NO, SERVICE_TYPE1, SERVICE_TYPE, 
+    SERVICE_TYPE3, SERVICE_TYPE4, SERVICE_TYPE5, SERVICE_TYPE6, SERVICE_TYPE7, CTI_NO, 
+    IN_CARD_NO, IC_CARD_FLAG, CUST_TYPE, CUST_IDENTITY, CTI_CALL_TYPE, LANGUAGE, ONE_FINISH_FLAG, 
+    CALL_OUT_NO, EXTENSION, CALL_AGENT_ID, MAKEUP_FLAG, SATISFYS_FLAG, CALL_TYPE, CUST_PHONE, 
+    CALL_TIMES, CALL_END_TIME, CALL_START_TIME, RECORD_FINISH_TIME, ACTIVITY_FLAG, PAY_METHTEMPLET, 
+    MNCH_METHTEMPLET, REPEAT_PHONE, CMPLOYEE_NM, REPEAT_PHONE_TIME, REPEAT_NUM, CONFERENCE_NUM, 
+    SATISFYS_NUM, BUSINESS_AREA_PRO1, BUSINESS_AREA_PRO2, ACQ_INS_ID_CD, ACTIVITY_NAME, 
+    TERM_INS_ID_CD, ERROR_CODE, CALL_BACK_NUMBER, REMARKS, CARD_RANK, ISS_INS_ID, INS_CN_NM, 
+    CTI_MCHNT_CD, CTI_INS_ID_CD, MCHNT_NM, CTI_INS_ID_NM, IVR_URL, OUT_BANK, OUT_CARD_NUMBER, 
+    IS_OWN, DEAL_TYPE, ACTIVITY_ID
+  </sql>
+  <select id="selectByExample" parameterType="com.callsummary.model.CallSummaryExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from callsummary
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from callsummary
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from callsummary
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.callsummary.model.CallSummaryExample">
+    delete from callsummary
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.callsummary.model.CallSummary">
+    insert into callsummary (ID, CALLREFERENCE, CARD_NO, 
+      TRANS_DT, CMPLOYEE_NO, CALL_IN_NO, 
+      SERVICE_TYPE1, SERVICE_TYPE, SERVICE_TYPE3, 
+      SERVICE_TYPE4, SERVICE_TYPE5, SERVICE_TYPE6, 
+      SERVICE_TYPE7, CTI_NO, IN_CARD_NO, 
+      IC_CARD_FLAG, CUST_TYPE, CUST_IDENTITY, 
+      CTI_CALL_TYPE, LANGUAGE, ONE_FINISH_FLAG, 
+      CALL_OUT_NO, EXTENSION, CALL_AGENT_ID, 
+      MAKEUP_FLAG, SATISFYS_FLAG, CALL_TYPE, 
+      CUST_PHONE, CALL_TIMES, CALL_END_TIME, 
+      CALL_START_TIME, RECORD_FINISH_TIME, ACTIVITY_FLAG, 
+      PAY_METHTEMPLET, MNCH_METHTEMPLET, REPEAT_PHONE, 
+      CMPLOYEE_NM, REPEAT_PHONE_TIME, REPEAT_NUM, 
+      CONFERENCE_NUM, SATISFYS_NUM, BUSINESS_AREA_PRO1, 
+      BUSINESS_AREA_PRO2, ACQ_INS_ID_CD, ACTIVITY_NAME, 
+      TERM_INS_ID_CD, ERROR_CODE, CALL_BACK_NUMBER, 
+      REMARKS, CARD_RANK, ISS_INS_ID, 
+      INS_CN_NM, CTI_MCHNT_CD, CTI_INS_ID_CD, 
+      MCHNT_NM, CTI_INS_ID_NM, IVR_URL, 
+      OUT_BANK, OUT_CARD_NUMBER, IS_OWN, 
+      DEAL_TYPE, ACTIVITY_ID)
+    values (#{id,jdbcType=INTEGER}, #{callreference,jdbcType=VARCHAR}, #{card_no,jdbcType=VARCHAR},
+      #{trans_dt,jdbcType=VARCHAR}, #{cmployee_no,jdbcType=VARCHAR}, #{call_in_no,jdbcType=VARCHAR},
+      #{service_type1,jdbcType=VARCHAR}, #{service_type,jdbcType=VARCHAR}, #{service_type3,jdbcType=VARCHAR},
+      #{service_type4,jdbcType=VARCHAR}, #{service_type5,jdbcType=VARCHAR}, #{service_type6,jdbcType=VARCHAR},
+      #{service_type7,jdbcType=VARCHAR}, #{cti_no,jdbcType=VARCHAR}, #{in_card_no,jdbcType=VARCHAR},
+      #{ic_card_flag,jdbcType=VARCHAR}, #{cust_type,jdbcType=VARCHAR}, #{cust_identity,jdbcType=VARCHAR},
+      #{cti_call_type,jdbcType=VARCHAR}, #{language,jdbcType=VARCHAR}, #{one_finish_flag,jdbcType=VARCHAR},
+      #{call_out_no,jdbcType=VARCHAR}, #{extension,jdbcType=VARCHAR}, #{call_agent_id,jdbcType=VARCHAR},
+      #{makeup_flag,jdbcType=VARCHAR}, #{satisfys_flag,jdbcType=VARCHAR}, #{call_type,jdbcType=VARCHAR},
+      #{cust_phone,jdbcType=VARCHAR}, #{call_times,jdbcType=VARCHAR}, #{call_end_time,jdbcType=VARCHAR},
+      #{call_start_time,jdbcType=VARCHAR}, #{record_finish_time,jdbcType=VARCHAR}, #{activity_flag,jdbcType=VARCHAR},
+      #{pay_methtemplet,jdbcType=VARCHAR}, #{mnch_methtemplet,jdbcType=VARCHAR}, #{repeat_phone,jdbcType=VARCHAR},
+      #{cmployee_nm,jdbcType=VARCHAR}, #{repeat_phone_time,jdbcType=VARCHAR}, #{repeat_num,jdbcType=VARCHAR},
+      #{conferenceNum,jdbcType=VARCHAR}, #{satisfys_num,jdbcType=VARCHAR}, #{business_area_pro1,jdbcType=VARCHAR},
+      #{business_area_pro2,jdbcType=VARCHAR}, #{acq_ins_id_cd,jdbcType=VARCHAR}, #{activity_name,jdbcType=VARCHAR},
+      #{term_ins_id_cd,jdbcType=VARCHAR}, #{error_code,jdbcType=VARCHAR}, #{call_back_number,jdbcType=VARCHAR},
+      #{remarks,jdbcType=VARCHAR}, #{card_rank,jdbcType=VARCHAR}, #{iss_ins_id,jdbcType=VARCHAR},
+      #{ins_cn_nm,jdbcType=VARCHAR}, #{cti_mchnt_cd,jdbcType=VARCHAR}, #{cti_ins_id_cd,jdbcType=VARCHAR},
+      #{mchnt_nm,jdbcType=VARCHAR}, #{cti_ins_id_nm,jdbcType=VARCHAR}, #{ivr_url,jdbcType=VARCHAR},
+      #{out_bank,jdbcType=VARCHAR}, #{out_card_number,jdbcType=VARCHAR}, #{is_own,jdbcType=VARCHAR},
+      #{deal_type,jdbcType=VARCHAR}, #{activity_id,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.callsummary.model.CallSummary">
+    insert into callsummary
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        ID,
+      </if>
+      <if test="CALLREFERENCE != null">
+        CALLREFERENCE,
+      </if>
+      <if test="CARD_NO != null">
+        CARD_NO,
+      </if>
+      <if test="TRANS_DT != null">
+        TRANS_DT,
+      </if>
+      <if test="CMPLOYEE_NO != null">
+        CMPLOYEE_NO,
+      </if>
+      <if test="CALL_IN_NO != null">
+        CALL_IN_NO,
+      </if>
+      <if test="SERVICE_TYPE1 != null">
+        SERVICE_TYPE1,
+      </if>
+      <if test="SERVICE_TYPE != null">
+        SERVICE_TYPE,
+      </if>
+      <if test="SERVICE_TYPE3 != null">
+        SERVICE_TYPE3,
+      </if>
+      <if test="SERVICE_TYPE4 != null">
+        SERVICE_TYPE4,
+      </if>
+      <if test="SERVICE_TYPE5 != null">
+        SERVICE_TYPE5,
+      </if>
+      <if test="SERVICE_TYPE6 != null">
+        SERVICE_TYPE6,
+      </if>
+      <if test="SERVICE_TYPE7 != null">
+        SERVICE_TYPE7,
+      </if>
+      <if test="CTI_NO != null">
+        CTI_NO,
+      </if>
+      <if test="IN_CARD_NO != null">
+        IN_CARD_NO,
+      </if>
+      <if test="IC_CARD_FLAG != null">
+        IC_CARD_FLAG,
+      </if>
+      <if test="CUST_TYPE != null">
+        CUST_TYPE,
+      </if>
+      <if test="CUST_IDENTITY != null">
+        CUST_IDENTITY,
+      </if>
+      <if test="CTI_CALL_TYPE != null">
+        CTI_CALL_TYPE,
+      </if>
+      <if test="LANGUAGE != null">
+        LANGUAGE,
+      </if>
+      <if test="ONE_FINISH_FLAG != null">
+        ONE_FINISH_FLAG,
+      </if>
+      <if test="CALL_OUT_NO != null">
+        CALL_OUT_NO,
+      </if>
+      <if test="EXTENSION != null">
+        EXTENSION,
+      </if>
+      <if test="CALL_AGENT_ID != null">
+        CALL_AGENT_ID,
+      </if>
+      <if test="MAKEUP_FLAG != null">
+        MAKEUP_FLAG,
+      </if>
+      <if test="SATISFYS_FLAG != null">
+        SATISFYS_FLAG,
+      </if>
+      <if test="CALL_TYPE != null">
+        CALL_TYPE,
+      </if>
+      <if test="CUST_PHONE != null">
+        CUST_PHONE,
+      </if>
+      <if test="CALL_TIMES != null">
+        CALL_TIMES,
+      </if>
+      <if test="CALL_END_TIME != null">
+        CALL_END_TIME,
+      </if>
+      <if test="CALL_START_TIME != null">
+        CALL_START_TIME,
+      </if>
+      <if test="RECORD_FINISH_TIME != null">
+        RECORD_FINISH_TIME,
+      </if>
+      <if test="ACTIVITY_FLAG != null">
+        ACTIVITY_FLAG,
+      </if>
+      <if test="PAY_METHTEMPLET != null">
+        PAY_METHTEMPLET,
+      </if>
+      <if test="MNCH_METHTEMPLET != null">
+        MNCH_METHTEMPLET,
+      </if>
+      <if test="REPEAT_PHONE != null">
+        REPEAT_PHONE,
+      </if>
+      <if test="CMPLOYEE_NM != null">
+        CMPLOYEE_NM,
+      </if>
+      <if test="REPEAT_PHONE_TIME != null">
+        REPEAT_PHONE_TIME,
+      </if>
+      <if test="REPEAT_NUM != null">
+        REPEAT_NUM,
+      </if>
+      <if test="conferenceNum != null">
+        CONFERENCE_NUM,
+      </if>
+      <if test="SATISFYS_NUM != null">
+        SATISFYS_NUM,
+      </if>
+      <if test="BUSINESS_AREA_PRO1 != null">
+        BUSINESS_AREA_PRO1,
+      </if>
+      <if test="BUSINESS_AREA_PRO2 != null">
+        BUSINESS_AREA_PRO2,
+      </if>
+      <if test="ACQ_INS_ID_CD != null">
+        ACQ_INS_ID_CD,
+      </if>
+      <if test="ACTIVITY_NAME != null">
+        ACTIVITY_NAME,
+      </if>
+      <if test="TERM_INS_ID_CD != null">
+        TERM_INS_ID_CD,
+      </if>
+      <if test="ERROR_CODE != null">
+        ERROR_CODE,
+      </if>
+      <if test="CALL_BACK_NUMBER != null">
+        CALL_BACK_NUMBER,
+      </if>
+      <if test="REMARKS != null">
+        REMARKS,
+      </if>
+      <if test="CARD_RANK != null">
+        CARD_RANK,
+      </if>
+      <if test="ISS_INS_ID != null">
+        ISS_INS_ID,
+      </if>
+      <if test="INS_CN_NM != null">
+        INS_CN_NM,
+      </if>
+      <if test="CTI_MCHNT_CD != null">
+        CTI_MCHNT_CD,
+      </if>
+      <if test="CTI_INS_ID_CD != null">
+        CTI_INS_ID_CD,
+      </if>
+      <if test="MCHNT_NM != null">
+        MCHNT_NM,
+      </if>
+      <if test="CTI_INS_ID_NM != null">
+        CTI_INS_ID_NM,
+      </if>
+      <if test="IVR_URL != null">
+        IVR_URL,
+      </if>
+      <if test="OUT_BANK != null">
+        OUT_BANK,
+      </if>
+      <if test="OUT_CARD_NUMBER != null">
+        OUT_CARD_NUMBER,
+      </if>
+      <if test="IS_OWN != null">
+        IS_OWN,
+      </if>
+      <if test="DEAL_TYPE != null">
+        DEAL_TYPE,
+      </if>
+      <if test="ACTIVITY_ID != null">
+        ACTIVITY_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        #{ID,jdbcType=INTEGER},
+      </if>
+      <if test="CALLREFERENCE != null">
+        #{CALLREFERENCE,jdbcType=VARCHAR},
+      </if>
+      <if test="CARD_NO != null">
+        #{CARD_NO,jdbcType=VARCHAR},
+      </if>
+      <if test="TRANS_DT != null">
+        #{TRANS_DT,jdbcType=VARCHAR},
+      </if>
+      <if test="CMPLOYEE_NO != null">
+        #{CMPLOYEE_NO,jdbcType=VARCHAR},
+      </if>
+      <if test="CALL_IN_NO != null">
+        #{CALL_IN_NO,jdbcType=VARCHAR},
+      </if>
+      <if test="SERVICE_TYPE1 != null">
+        #{SERVICE_TYPE1,jdbcType=VARCHAR},
+      </if>
+      <if test="SERVICE_TYPE != null">
+        #{SERVICE_TYPE,jdbcType=VARCHAR},
+      </if>
+      <if test="SERVICE_TYPE3 != null">
+        #{SERVICE_TYPE3,jdbcType=VARCHAR},
+      </if>
+      <if test="SERVICE_TYPE4 != null">
+        #{SERVICE_TYPE4,jdbcType=VARCHAR},
+      </if>
+      <if test="SERVICE_TYPE5 != null">
+        #{SERVICE_TYPE5,jdbcType=VARCHAR},
+      </if>
+      <if test="SERVICE_TYPE6 != null">
+        #{SERVICE_TYPE6,jdbcType=VARCHAR},
+      </if>
+      <if test="SERVICE_TYPE7 != null">
+        #{SERVICE_TYPE7,jdbcType=VARCHAR},
+      </if>
+      <if test="CTI_NO != null">
+        #{CTI_NO,jdbcType=VARCHAR},
+      </if>
+      <if test="IN_CARD_NO != null">
+        #{IN_CARD_NO,jdbcType=VARCHAR},
+      </if>
+      <if test="IC_CARD_FLAG != null">
+        #{IC_CARD_FLAG,jdbcType=VARCHAR},
+      </if>
+      <if test="CUST_TYPE != null">
+        #{CUST_TYPE,jdbcType=VARCHAR},
+      </if>
+      <if test="CUST_IDENTITY != null">
+        #{CUST_IDENTITY,jdbcType=VARCHAR},
+      </if>
+      <if test="CTI_CALL_TYPE != null">
+        #{CTI_CALL_TYPE,jdbcType=VARCHAR},
+      </if>
+      <if test="LANGUAGE != null">
+        #{LANGUAGE,jdbcType=VARCHAR},
+      </if>
+      <if test="ONE_FINISH_FLAG != null">
+        #{ONE_FINISH_FLAG,jdbcType=VARCHAR},
+      </if>
+      <if test="CALL_OUT_NO != null">
+        #{CALL_OUT_NO,jdbcType=VARCHAR},
+      </if>
+      <if test="EXTENSION != null">
+        #{EXTENSION,jdbcType=VARCHAR},
+      </if>
+      <if test="CALL_AGENT_ID != null">
+        #{CALL_AGENT_ID,jdbcType=VARCHAR},
+      </if>
+      <if test="MAKEUP_FLAG != null">
+        #{MAKEUP_FLAG,jdbcType=VARCHAR},
+      </if>
+      <if test="SATISFYS_FLAG != null">
+        #{SATISFYS_FLAG,jdbcType=VARCHAR},
+      </if>
+      <if test="CALL_TYPE != null">
+        #{CALL_TYPE,jdbcType=VARCHAR},
+      </if>
+      <if test="CUST_PHONE != null">
+        #{CUST_PHONE,jdbcType=VARCHAR},
+      </if>
+      <if test="CALL_TIMES != null">
+        #{CALL_TIMES,jdbcType=VARCHAR},
+      </if>
+      <if test="CALL_END_TIME != null">
+        #{CALL_END_TIME,jdbcType=VARCHAR},
+      </if>
+      <if test="CALL_START_TIME != null">
+        #{CALL_START_TIME,jdbcType=VARCHAR},
+      </if>
+      <if test="RECORD_FINISH_TIME != null">
+        #{RECORD_FINISH_TIME,jdbcType=VARCHAR},
+      </if>
+      <if test="ACTIVITY_FLAG != null">
+        #{ACTIVITY_FLAG,jdbcType=VARCHAR},
+      </if>
+      <if test="PAY_METHTEMPLET != null">
+        #{PAY_METHTEMPLET,jdbcType=VARCHAR},
+      </if>
+      <if test="MNCH_METHTEMPLET != null">
+        #{MNCH_METHTEMPLET,jdbcType=VARCHAR},
+      </if>
+      <if test="REPEAT_PHONE != null">
+        #{REPEAT_PHONE,jdbcType=VARCHAR},
+      </if>
+      <if test="CMPLOYEE_NM != null">
+        #{CMPLOYEE_NM,jdbcType=VARCHAR},
+      </if>
+      <if test="REPEAT_PHONE_TIME != null">
+        #{REPEAT_PHONE_TIME,jdbcType=VARCHAR},
+      </if>
+      <if test="REPEAT_NUM != null">
+        #{REPEAT_NUM,jdbcType=VARCHAR},
+      </if>
+      <if test="conferenceNum != null">
+        #{conferenceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="SATISFYS_NUM != null">
+        #{SATISFYS_NUM,jdbcType=VARCHAR},
+      </if>
+      <if test="BUSINESS_AREA_PRO1 != null">
+        #{BUSINESS_AREA_PRO1,jdbcType=VARCHAR},
+      </if>
+      <if test="BUSINESS_AREA_PRO2 != null">
+        #{BUSINESS_AREA_PRO2,jdbcType=VARCHAR},
+      </if>
+      <if test="ACQ_INS_ID_CD != null">
+        #{ACQ_INS_ID_CD,jdbcType=VARCHAR},
+      </if>
+      <if test="ACTIVITY_NAME != null">
+        #{ACTIVITY_NAME,jdbcType=VARCHAR},
+      </if>
+      <if test="TERM_INS_ID_CD != null">
+        #{TERM_INS_ID_CD,jdbcType=VARCHAR},
+      </if>
+      <if test="ERROR_CODE != null">
+        #{ERROR_CODE,jdbcType=VARCHAR},
+      </if>
+      <if test="CALL_BACK_NUMBER != null">
+        #{CALL_BACK_NUMBER,jdbcType=VARCHAR},
+      </if>
+      <if test="REMARKS != null">
+        #{REMARKS,jdbcType=VARCHAR},
+      </if>
+      <if test="CARD_RANK != null">
+        #{CARD_RANK,jdbcType=VARCHAR},
+      </if>
+      <if test="ISS_INS_ID != null">
+        #{ISS_INS_ID,jdbcType=VARCHAR},
+      </if>
+      <if test="INS_CN_NM != null">
+        #{INS_CN_NM,jdbcType=VARCHAR},
+      </if>
+      <if test="CTI_MCHNT_CD != null">
+        #{CTI_MCHNT_CD,jdbcType=VARCHAR},
+      </if>
+      <if test="CTI_INS_ID_CD != null">
+        #{CTI_INS_ID_CD,jdbcType=VARCHAR},
+      </if>
+      <if test="MCHNT_NM != null">
+        #{MCHNT_NM,jdbcType=VARCHAR},
+      </if>
+      <if test="CTI_INS_ID_NM != null">
+        #{CTI_INS_ID_NM,jdbcType=VARCHAR},
+      </if>
+      <if test="IVR_URL != null">
+        #{IVR_URL,jdbcType=VARCHAR},
+      </if>
+      <if test="OUT_BANK != null">
+        #{OUT_BANK,jdbcType=VARCHAR},
+      </if>
+      <if test="OUT_CARD_NUMBER != null">
+        #{OUT_CARD_NUMBER,jdbcType=VARCHAR},
+      </if>
+      <if test="IS_OWN != null">
+        #{IS_OWN,jdbcType=VARCHAR},
+      </if>
+      <if test="DEAL_TYPE != null">
+        #{DEAL_TYPE,jdbcType=VARCHAR},
+      </if>
+      <if test="ACTIVITY_ID != null">
+        #{ACTIVITY_ID,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.callsummary.model.CallSummaryExample" resultType="java.lang.Long">
+    select count(*) from callsummary
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update callsummary
+    <set>
+      <if test="record.ID != null">
+        ID = #{record.ID,jdbcType=INTEGER},
+      </if>
+      <if test="record.CALLREFERENCE != null">
+        CALLREFERENCE = #{record.CALLREFERENCE,jdbcType=VARCHAR},
+      </if>
+      <if test="record.CARD_NO != null">
+        CARD_NO = #{record.CARD_NO,jdbcType=VARCHAR},
+      </if>
+      <if test="record.TRANS_DT != null">
+        TRANS_DT = #{record.TRANS_DT,jdbcType=VARCHAR},
+      </if>
+      <if test="record.CMPLOYEE_NO != null">
+        CMPLOYEE_NO = #{record.CMPLOYEE_NO,jdbcType=VARCHAR},
+      </if>
+      <if test="record.CALL_IN_NO != null">
+        CALL_IN_NO = #{record.CALL_IN_NO,jdbcType=VARCHAR},
+      </if>
+      <if test="record.SERVICE_TYPE1 != null">
+        SERVICE_TYPE1 = #{record.SERVICE_TYPE1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.SERVICE_TYPE != null">
+        SERVICE_TYPE = #{record.SERVICE_TYPE,jdbcType=VARCHAR},
+      </if>
+      <if test="record.SERVICE_TYPE3 != null">
+        SERVICE_TYPE3 = #{record.SERVICE_TYPE3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.SERVICE_TYPE4 != null">
+        SERVICE_TYPE4 = #{record.SERVICE_TYPE4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.SERVICE_TYPE5 != null">
+        SERVICE_TYPE5 = #{record.SERVICE_TYPE5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.SERVICE_TYPE6 != null">
+        SERVICE_TYPE6 = #{record.SERVICE_TYPE6,jdbcType=VARCHAR},
+      </if>
+      <if test="record.SERVICE_TYPE7 != null">
+        SERVICE_TYPE7 = #{record.SERVICE_TYPE7,jdbcType=VARCHAR},
+      </if>
+      <if test="record.CTI_NO != null">
+        CTI_NO = #{record.CTI_NO,jdbcType=VARCHAR},
+      </if>
+      <if test="record.IN_CARD_NO != null">
+        IN_CARD_NO = #{record.IN_CARD_NO,jdbcType=VARCHAR},
+      </if>
+      <if test="record.IC_CARD_FLAG != null">
+        IC_CARD_FLAG = #{record.IC_CARD_FLAG,jdbcType=VARCHAR},
+      </if>
+      <if test="record.CUST_TYPE != null">
+        CUST_TYPE = #{record.CUST_TYPE,jdbcType=VARCHAR},
+      </if>
+      <if test="record.CUST_IDENTITY != null">
+        CUST_IDENTITY = #{record.CUST_IDENTITY,jdbcType=VARCHAR},
+      </if>
+      <if test="record.CTI_CALL_TYPE != null">
+        CTI_CALL_TYPE = #{record.CTI_CALL_TYPE,jdbcType=VARCHAR},
+      </if>
+      <if test="record.LANGUAGE != null">
+        LANGUAGE = #{record.LANGUAGE,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ONE_FINISH_FLAG != null">
+        ONE_FINISH_FLAG = #{record.ONE_FINISH_FLAG,jdbcType=VARCHAR},
+      </if>
+      <if test="record.CALL_OUT_NO != null">
+        CALL_OUT_NO = #{record.CALL_OUT_NO,jdbcType=VARCHAR},
+      </if>
+      <if test="record.EXTENSION != null">
+        EXTENSION = #{record.EXTENSION,jdbcType=VARCHAR},
+      </if>
+      <if test="record.CALL_AGENT_ID != null">
+        CALL_AGENT_ID = #{record.CALL_AGENT_ID,jdbcType=VARCHAR},
+      </if>
+      <if test="record.MAKEUP_FLAG != null">
+        MAKEUP_FLAG = #{record.MAKEUP_FLAG,jdbcType=VARCHAR},
+      </if>
+      <if test="record.SATISFYS_FLAG != null">
+        SATISFYS_FLAG = #{record.SATISFYS_FLAG,jdbcType=VARCHAR},
+      </if>
+      <if test="record.CALL_TYPE != null">
+        CALL_TYPE = #{record.CALL_TYPE,jdbcType=VARCHAR},
+      </if>
+      <if test="record.CUST_PHONE != null">
+        CUST_PHONE = #{record.CUST_PHONE,jdbcType=VARCHAR},
+      </if>
+      <if test="record.CALL_TIMES != null">
+        CALL_TIMES = #{record.CALL_TIMES,jdbcType=VARCHAR},
+      </if>
+      <if test="record.CALL_END_TIME != null">
+        CALL_END_TIME = #{record.CALL_END_TIME,jdbcType=VARCHAR},
+      </if>
+      <if test="record.CALL_START_TIME != null">
+        CALL_START_TIME = #{record.CALL_START_TIME,jdbcType=VARCHAR},
+      </if>
+      <if test="record.RECORD_FINISH_TIME != null">
+        RECORD_FINISH_TIME = #{record.RECORD_FINISH_TIME,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ACTIVITY_FLAG != null">
+        ACTIVITY_FLAG = #{record.ACTIVITY_FLAG,jdbcType=VARCHAR},
+      </if>
+      <if test="record.PAY_METHTEMPLET != null">
+        PAY_METHTEMPLET = #{record.PAY_METHTEMPLET,jdbcType=VARCHAR},
+      </if>
+      <if test="record.MNCH_METHTEMPLET != null">
+        MNCH_METHTEMPLET = #{record.MNCH_METHTEMPLET,jdbcType=VARCHAR},
+      </if>
+      <if test="record.REPEAT_PHONE != null">
+        REPEAT_PHONE = #{record.REPEAT_PHONE,jdbcType=VARCHAR},
+      </if>
+      <if test="record.CMPLOYEE_NM != null">
+        CMPLOYEE_NM = #{record.CMPLOYEE_NM,jdbcType=VARCHAR},
+      </if>
+      <if test="record.REPEAT_PHONE_TIME != null">
+        REPEAT_PHONE_TIME = #{record.REPEAT_PHONE_TIME,jdbcType=VARCHAR},
+      </if>
+      <if test="record.REPEAT_NUM != null">
+        REPEAT_NUM = #{record.REPEAT_NUM,jdbcType=VARCHAR},
+      </if>
+      <if test="record.CONFERENCE_NUM != null">
+        CONFERENCE_NUM = #{record.CONFERENCE_NUM,jdbcType=VARCHAR},
+      </if>
+      <if test="record.SATISFYS_NUM != null">
+        SATISFYS_NUM = #{record.SATISFYS_NUM,jdbcType=VARCHAR},
+      </if>
+      <if test="record.BUSINESS_AREA_PRO1 != null">
+        BUSINESS_AREA_PRO1 = #{record.BUSINESS_AREA_PRO1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.BUSINESS_AREA_PRO2 != null">
+        BUSINESS_AREA_PRO2 = #{record.BUSINESS_AREA_PRO2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ACQ_INS_ID_CD != null">
+        ACQ_INS_ID_CD = #{record.ACQ_INS_ID_CD,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ACTIVITY_NAME != null">
+        ACTIVITY_NAME = #{record.ACTIVITY_NAME,jdbcType=VARCHAR},
+      </if>
+      <if test="record.TERM_INS_ID_CD != null">
+        TERM_INS_ID_CD = #{record.TERM_INS_ID_CD,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ERROR_CODE != null">
+        ERROR_CODE = #{record.ERROR_CODE,jdbcType=VARCHAR},
+      </if>
+      <if test="record.CALL_BACK_NUMBER != null">
+        CALL_BACK_NUMBER = #{record.CALL_BACK_NUMBER,jdbcType=VARCHAR},
+      </if>
+      <if test="record.REMARKS != null">
+        REMARKS = #{record.REMARKS,jdbcType=VARCHAR},
+      </if>
+      <if test="record.CARD_RANK != null">
+        CARD_RANK = #{record.CARD_RANK,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ISS_INS_ID != null">
+        ISS_INS_ID = #{record.ISS_INS_ID,jdbcType=VARCHAR},
+      </if>
+      <if test="record.INS_CN_NM != null">
+        INS_CN_NM = #{record.INS_CN_NM,jdbcType=VARCHAR},
+      </if>
+      <if test="record.CTI_MCHNT_CD != null">
+        CTI_MCHNT_CD = #{record.CTI_MCHNT_CD,jdbcType=VARCHAR},
+      </if>
+      <if test="record.CTI_INS_ID_CD != null">
+        CTI_INS_ID_CD = #{record.CTI_INS_ID_CD,jdbcType=VARCHAR},
+      </if>
+      <if test="record.MCHNT_NM != null">
+        MCHNT_NM = #{record.MCHNT_NM,jdbcType=VARCHAR},
+      </if>
+      <if test="record.CTI_INS_ID_NM != null">
+        CTI_INS_ID_NM = #{record.CTI_INS_ID_NM,jdbcType=VARCHAR},
+      </if>
+      <if test="record.IVR_URL != null">
+        IVR_URL = #{record.IVR_URL,jdbcType=VARCHAR},
+      </if>
+      <if test="record.OUT_BANK != null">
+        OUT_BANK = #{record.OUT_BANK,jdbcType=VARCHAR},
+      </if>
+      <if test="record.OUT_CARD_NUMBER != null">
+        OUT_CARD_NUMBER = #{record.OUT_CARD_NUMBER,jdbcType=VARCHAR},
+      </if>
+      <if test="record.IS_OWN != null">
+        IS_OWN = #{record.IS_OWN,jdbcType=VARCHAR},
+      </if>
+      <if test="record.DEAL_TYPE != null">
+        DEAL_TYPE = #{record.DEAL_TYPE,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ACTIVITY_ID != null">
+        ACTIVITY_ID = #{record.ACTIVITY_ID,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update callsummary
+    set ID = #{record.ID,jdbcType=INTEGER},
+      CALLREFERENCE = #{record.CALLREFERENCE,jdbcType=VARCHAR},
+      CARD_NO = #{record.CARD_NO,jdbcType=VARCHAR},
+      TRANS_DT = #{record.TRANS_DT,jdbcType=VARCHAR},
+      CMPLOYEE_NO = #{record.CMPLOYEE_NO,jdbcType=VARCHAR},
+      CALL_IN_NO = #{record.CALL_IN_NO,jdbcType=VARCHAR},
+      SERVICE_TYPE1 = #{record.SERVICE_TYPE1,jdbcType=VARCHAR},
+      SERVICE_TYPE = #{record.SERVICE_TYPE,jdbcType=VARCHAR},
+      SERVICE_TYPE3 = #{record.SERVICE_TYPE3,jdbcType=VARCHAR},
+      SERVICE_TYPE4 = #{record.SERVICE_TYPE4,jdbcType=VARCHAR},
+      SERVICE_TYPE5 = #{record.SERVICE_TYPE5,jdbcType=VARCHAR},
+      SERVICE_TYPE6 = #{record.SERVICE_TYPE6,jdbcType=VARCHAR},
+      SERVICE_TYPE7 = #{record.SERVICE_TYPE7,jdbcType=VARCHAR},
+      CTI_NO = #{record.CTI_NO,jdbcType=VARCHAR},
+      IN_CARD_NO = #{record.IN_CARD_NO,jdbcType=VARCHAR},
+      IC_CARD_FLAG = #{record.IC_CARD_FLAG,jdbcType=VARCHAR},
+      CUST_TYPE = #{record.CUST_TYPE,jdbcType=VARCHAR},
+      CUST_IDENTITY = #{record.CUST_IDENTITY,jdbcType=VARCHAR},
+      CTI_CALL_TYPE = #{record.CTI_CALL_TYPE,jdbcType=VARCHAR},
+      LANGUAGE = #{record.LANGUAGE,jdbcType=VARCHAR},
+      ONE_FINISH_FLAG = #{record.ONE_FINISH_FLAG,jdbcType=VARCHAR},
+      CALL_OUT_NO = #{record.CALL_OUT_NO,jdbcType=VARCHAR},
+      EXTENSION = #{record.EXTENSION,jdbcType=VARCHAR},
+      CALL_AGENT_ID = #{record.CALL_AGENT_ID,jdbcType=VARCHAR},
+      MAKEUP_FLAG = #{record.MAKEUP_FLAG,jdbcType=VARCHAR},
+      SATISFYS_FLAG = #{record.SATISFYS_FLAG,jdbcType=VARCHAR},
+      CALL_TYPE = #{record.CALL_TYPE,jdbcType=VARCHAR},
+      CUST_PHONE = #{record.CUST_PHONE,jdbcType=VARCHAR},
+      CALL_TIMES = #{record.CALL_TIMES,jdbcType=VARCHAR},
+      CALL_END_TIME = #{record.CALL_END_TIME,jdbcType=VARCHAR},
+      CALL_START_TIME = #{record.CALL_START_TIME,jdbcType=VARCHAR},
+      RECORD_FINISH_TIME = #{record.RECORD_FINISH_TIME,jdbcType=VARCHAR},
+      ACTIVITY_FLAG = #{record.ACTIVITY_FLAG,jdbcType=VARCHAR},
+      PAY_METHTEMPLET = #{record.PAY_METHTEMPLET,jdbcType=VARCHAR},
+      MNCH_METHTEMPLET = #{record.MNCH_METHTEMPLET,jdbcType=VARCHAR},
+      REPEAT_PHONE = #{record.REPEAT_PHONE,jdbcType=VARCHAR},
+      CMPLOYEE_NM = #{record.CMPLOYEE_NM,jdbcType=VARCHAR},
+      REPEAT_PHONE_TIME = #{record.REPEAT_PHONE_TIME,jdbcType=VARCHAR},
+      REPEAT_NUM = #{record.REPEAT_NUM,jdbcType=VARCHAR},
+      CONFERENCE_NUM = #{record.CONFERENCE_NUM,jdbcType=VARCHAR},
+      SATISFYS_NUM = #{record.SATISFYS_NUM,jdbcType=VARCHAR},
+      BUSINESS_AREA_PRO1 = #{record.BUSINESS_AREA_PRO1,jdbcType=VARCHAR},
+      BUSINESS_AREA_PRO2 = #{record.BUSINESS_AREA_PRO2,jdbcType=VARCHAR},
+      ACQ_INS_ID_CD = #{record.ACQ_INS_ID_CD,jdbcType=VARCHAR},
+      ACTIVITY_NAME = #{record.ACTIVITY_NAME,jdbcType=VARCHAR},
+      TERM_INS_ID_CD = #{record.TERM_INS_ID_CD,jdbcType=VARCHAR},
+      ERROR_CODE = #{record.ERROR_CODE,jdbcType=VARCHAR},
+      CALL_BACK_NUMBER = #{record.CALL_BACK_NUMBER,jdbcType=VARCHAR},
+      REMARKS = #{record.REMARKS,jdbcType=VARCHAR},
+      CARD_RANK = #{record.CARD_RANK,jdbcType=VARCHAR},
+      ISS_INS_ID = #{record.ISS_INS_ID,jdbcType=VARCHAR},
+      INS_CN_NM = #{record.INS_CN_NM,jdbcType=VARCHAR},
+      CTI_MCHNT_CD = #{record.CTI_MCHNT_CD,jdbcType=VARCHAR},
+      CTI_INS_ID_CD = #{record.CTI_INS_ID_CD,jdbcType=VARCHAR},
+      MCHNT_NM = #{record.MCHNT_NM,jdbcType=VARCHAR},
+      CTI_INS_ID_NM = #{record.CTI_INS_ID_NM,jdbcType=VARCHAR},
+      IVR_URL = #{record.IVR_URL,jdbcType=VARCHAR},
+      OUT_BANK = #{record.OUT_BANK,jdbcType=VARCHAR},
+      OUT_CARD_NUMBER = #{record.OUT_CARD_NUMBER,jdbcType=VARCHAR},
+      IS_OWN = #{record.IS_OWN,jdbcType=VARCHAR},
+      DEAL_TYPE = #{record.DEAL_TYPE,jdbcType=VARCHAR},
+      ACTIVITY_ID = #{record.ACTIVITY_ID,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.callsummary.model.CallSummary">
+    update callsummary
+    <set>
+      <if test="CALLREFERENCE != null">
+        CALLREFERENCE = #{CALLREFERENCE,jdbcType=VARCHAR},
+      </if>
+      <if test="CARD_NO != null">
+        CARD_NO = #{CARD_NO,jdbcType=VARCHAR},
+      </if>
+      <if test="TRANS_DT != null">
+        TRANS_DT = #{TRANS_DT,jdbcType=VARCHAR},
+      </if>
+      <if test="CMPLOYEE_NO != null">
+        CMPLOYEE_NO = #{CMPLOYEE_NO,jdbcType=VARCHAR},
+      </if>
+      <if test="CALL_IN_NO != null">
+        CALL_IN_NO = #{CALL_IN_NO,jdbcType=VARCHAR},
+      </if>
+      <if test="SERVICE_TYPE1 != null">
+        SERVICE_TYPE1 = #{SERVICE_TYPE1,jdbcType=VARCHAR},
+      </if>
+      <if test="SERVICE_TYPE != null">
+        SERVICE_TYPE = #{SERVICE_TYPE,jdbcType=VARCHAR},
+      </if>
+      <if test="SERVICE_TYPE3 != null">
+        SERVICE_TYPE3 = #{SERVICE_TYPE3,jdbcType=VARCHAR},
+      </if>
+      <if test="SERVICE_TYPE4 != null">
+        SERVICE_TYPE4 = #{SERVICE_TYPE4,jdbcType=VARCHAR},
+      </if>
+      <if test="SERVICE_TYPE5 != null">
+        SERVICE_TYPE5 = #{SERVICE_TYPE5,jdbcType=VARCHAR},
+      </if>
+      <if test="SERVICE_TYPE6 != null">
+        SERVICE_TYPE6 = #{SERVICE_TYPE6,jdbcType=VARCHAR},
+      </if>
+      <if test="SERVICE_TYPE7 != null">
+        SERVICE_TYPE7 = #{SERVICE_TYPE7,jdbcType=VARCHAR},
+      </if>
+      <if test="CTI_NO != null">
+        CTI_NO = #{CTI_NO,jdbcType=VARCHAR},
+      </if>
+      <if test="IN_CARD_NO != null">
+        IN_CARD_NO = #{IN_CARD_NO,jdbcType=VARCHAR},
+      </if>
+      <if test="IC_CARD_FLAG != null">
+        IC_CARD_FLAG = #{IC_CARD_FLAG,jdbcType=VARCHAR},
+      </if>
+      <if test="CUST_TYPE != null">
+        CUST_TYPE = #{CUST_TYPE,jdbcType=VARCHAR},
+      </if>
+      <if test="CUST_IDENTITY != null">
+        CUST_IDENTITY = #{CUST_IDENTITY,jdbcType=VARCHAR},
+      </if>
+      <if test="CTI_CALL_TYPE != null">
+        CTI_CALL_TYPE = #{CTI_CALL_TYPE,jdbcType=VARCHAR},
+      </if>
+      <if test="LANGUAGE != null">
+        LANGUAGE = #{LANGUAGE,jdbcType=VARCHAR},
+      </if>
+      <if test="ONE_FINISH_FLAG != null">
+        ONE_FINISH_FLAG = #{ONE_FINISH_FLAG,jdbcType=VARCHAR},
+      </if>
+      <if test="CALL_OUT_NO != null">
+        CALL_OUT_NO = #{CALL_OUT_NO,jdbcType=VARCHAR},
+      </if>
+      <if test="EXTENSION != null">
+        EXTENSION = #{EXTENSION,jdbcType=VARCHAR},
+      </if>
+      <if test="CALL_AGENT_ID != null">
+        CALL_AGENT_ID = #{CALL_AGENT_ID,jdbcType=VARCHAR},
+      </if>
+      <if test="MAKEUP_FLAG != null">
+        MAKEUP_FLAG = #{MAKEUP_FLAG,jdbcType=VARCHAR},
+      </if>
+      <if test="SATISFYS_FLAG != null">
+        SATISFYS_FLAG = #{SATISFYS_FLAG,jdbcType=VARCHAR},
+      </if>
+      <if test="CALL_TYPE != null">
+        CALL_TYPE = #{CALL_TYPE,jdbcType=VARCHAR},
+      </if>
+      <if test="CUST_PHONE != null">
+        CUST_PHONE = #{CUST_PHONE,jdbcType=VARCHAR},
+      </if>
+      <if test="CALL_TIMES != null">
+        CALL_TIMES = #{CALL_TIMES,jdbcType=VARCHAR},
+      </if>
+      <if test="CALL_END_TIME != null">
+        CALL_END_TIME = #{CALL_END_TIME,jdbcType=VARCHAR},
+      </if>
+      <if test="CALL_START_TIME != null">
+        CALL_START_TIME = #{CALL_START_TIME,jdbcType=VARCHAR},
+      </if>
+      <if test="RECORD_FINISH_TIME != null">
+        RECORD_FINISH_TIME = #{RECORD_FINISH_TIME,jdbcType=VARCHAR},
+      </if>
+      <if test="ACTIVITY_FLAG != null">
+        ACTIVITY_FLAG = #{ACTIVITY_FLAG,jdbcType=VARCHAR},
+      </if>
+      <if test="PAY_METHTEMPLET != null">
+        PAY_METHTEMPLET = #{PAY_METHTEMPLET,jdbcType=VARCHAR},
+      </if>
+      <if test="MNCH_METHTEMPLET != null">
+        MNCH_METHTEMPLET = #{MNCH_METHTEMPLET,jdbcType=VARCHAR},
+      </if>
+      <if test="REPEAT_PHONE != null">
+        REPEAT_PHONE = #{REPEAT_PHONE,jdbcType=VARCHAR},
+      </if>
+      <if test="CMPLOYEE_NM != null">
+        CMPLOYEE_NM = #{CMPLOYEE_NM,jdbcType=VARCHAR},
+      </if>
+      <if test="REPEAT_PHONE_TIME != null">
+        REPEAT_PHONE_TIME = #{REPEAT_PHONE_TIME,jdbcType=VARCHAR},
+      </if>
+      <if test="REPEAT_NUM != null">
+        REPEAT_NUM = #{REPEAT_NUM,jdbcType=VARCHAR},
+      </if>
+      <if test="CONFERENCE_NUM != null">
+        CONFERENCE_NUM = #{CONFERENCE_NUM,jdbcType=VARCHAR},
+      </if>
+      <if test="SATISFYS_NUM != null">
+        SATISFYS_NUM = #{SATISFYS_NUM,jdbcType=VARCHAR},
+      </if>
+      <if test="BUSINESS_AREA_PRO1 != null">
+        BUSINESS_AREA_PRO1 = #{BUSINESS_AREA_PRO1,jdbcType=VARCHAR},
+      </if>
+      <if test="BUSINESS_AREA_PRO2 != null">
+        BUSINESS_AREA_PRO2 = #{BUSINESS_AREA_PRO2,jdbcType=VARCHAR},
+      </if>
+      <if test="ACQ_INS_ID_CD != null">
+        ACQ_INS_ID_CD = #{ACQ_INS_ID_CD,jdbcType=VARCHAR},
+      </if>
+      <if test="ACTIVITY_NAME != null">
+        ACTIVITY_NAME = #{ACTIVITY_NAME,jdbcType=VARCHAR},
+      </if>
+      <if test="TERM_INS_ID_CD != null">
+        TERM_INS_ID_CD = #{TERM_INS_ID_CD,jdbcType=VARCHAR},
+      </if>
+      <if test="ERROR_CODE != null">
+        ERROR_CODE = #{ERROR_CODE,jdbcType=VARCHAR},
+      </if>
+      <if test="CALL_BACK_NUMBER != null">
+        CALL_BACK_NUMBER = #{CALL_BACK_NUMBER,jdbcType=VARCHAR},
+      </if>
+      <if test="REMARKS != null">
+        REMARKS = #{REMARKS,jdbcType=VARCHAR},
+      </if>
+      <if test="CARD_RANK != null">
+        CARD_RANK = #{CARD_RANK,jdbcType=VARCHAR},
+      </if>
+      <if test="ISS_INS_ID != null">
+        ISS_INS_ID = #{ISS_INS_ID,jdbcType=VARCHAR},
+      </if>
+      <if test="INS_CN_NM != null">
+        INS_CN_NM = #{INS_CN_NM,jdbcType=VARCHAR},
+      </if>
+      <if test="CTI_MCHNT_CD != null">
+        CTI_MCHNT_CD = #{CTI_MCHNT_CD,jdbcType=VARCHAR},
+      </if>
+      <if test="CTI_INS_ID_CD != null">
+        CTI_INS_ID_CD = #{CTI_INS_ID_CD,jdbcType=VARCHAR},
+      </if>
+      <if test="MCHNT_NM != null">
+        MCHNT_NM = #{MCHNT_NM,jdbcType=VARCHAR},
+      </if>
+      <if test="CTI_INS_ID_NM != null">
+        CTI_INS_ID_NM = #{CTI_INS_ID_NM,jdbcType=VARCHAR},
+      </if>
+      <if test="IVR_URL != null">
+        IVR_URL = #{IVR_URL,jdbcType=VARCHAR},
+      </if>
+      <if test="OUT_BANK != null">
+        OUT_BANK = #{OUT_BANK,jdbcType=VARCHAR},
+      </if>
+      <if test="OUT_CARD_NUMBER != null">
+        OUT_CARD_NUMBER = #{OUT_CARD_NUMBER,jdbcType=VARCHAR},
+      </if>
+      <if test="IS_OWN != null">
+        IS_OWN = #{IS_OWN,jdbcType=VARCHAR},
+      </if>
+      <if test="DEAL_TYPE != null">
+        DEAL_TYPE = #{DEAL_TYPE,jdbcType=VARCHAR},
+      </if>
+      <if test="ACTIVITY_ID != null">
+        ACTIVITY_ID = #{ACTIVITY_ID,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.callsummary.model.CallSummary">
+    update callsummary
+    set CALLREFERENCE = #{CALLREFERENCE,jdbcType=VARCHAR},
+      CARD_NO = #{CARD_NO,jdbcType=VARCHAR},
+      TRANS_DT = #{TRANS_DT,jdbcType=VARCHAR},
+      CMPLOYEE_NO = #{CMPLOYEE_NO,jdbcType=VARCHAR},
+      CALL_IN_NO = #{CALL_IN_NO,jdbcType=VARCHAR},
+      SERVICE_TYPE1 = #{SERVICE_TYPE1,jdbcType=VARCHAR},
+      SERVICE_TYPE = #{SERVICE_TYPE,jdbcType=VARCHAR},
+      SERVICE_TYPE3 = #{SERVICE_TYPE3,jdbcType=VARCHAR},
+      SERVICE_TYPE4 = #{SERVICE_TYPE4,jdbcType=VARCHAR},
+      SERVICE_TYPE5 = #{SERVICE_TYPE5,jdbcType=VARCHAR},
+      SERVICE_TYPE6 = #{SERVICE_TYPE6,jdbcType=VARCHAR},
+      SERVICE_TYPE7 = #{SERVICE_TYPE7,jdbcType=VARCHAR},
+      CTI_NO = #{CTI_NO,jdbcType=VARCHAR},
+      IN_CARD_NO = #{IN_CARD_NO,jdbcType=VARCHAR},
+      IC_CARD_FLAG = #{IC_CARD_FLAG,jdbcType=VARCHAR},
+      CUST_TYPE = #{CUST_TYPE,jdbcType=VARCHAR},
+      CUST_IDENTITY = #{CUST_IDENTITY,jdbcType=VARCHAR},
+      CTI_CALL_TYPE = #{CTI_CALL_TYPE,jdbcType=VARCHAR},
+      LANGUAGE = #{LANGUAGE,jdbcType=VARCHAR},
+      ONE_FINISH_FLAG = #{ONE_FINISH_FLAG,jdbcType=VARCHAR},
+      CALL_OUT_NO = #{CALL_OUT_NO,jdbcType=VARCHAR},
+      EXTENSION = #{EXTENSION,jdbcType=VARCHAR},
+      CALL_AGENT_ID = #{CALL_AGENT_ID,jdbcType=VARCHAR},
+      MAKEUP_FLAG = #{MAKEUP_FLAG,jdbcType=VARCHAR},
+      SATISFYS_FLAG = #{SATISFYS_FLAG,jdbcType=VARCHAR},
+      CALL_TYPE = #{CALL_TYPE,jdbcType=VARCHAR},
+      CUST_PHONE = #{CUST_PHONE,jdbcType=VARCHAR},
+      CALL_TIMES = #{CALL_TIMES,jdbcType=VARCHAR},
+      CALL_END_TIME = #{CALL_END_TIME,jdbcType=VARCHAR},
+      CALL_START_TIME = #{CALL_START_TIME,jdbcType=VARCHAR},
+      RECORD_FINISH_TIME = #{RECORD_FINISH_TIME,jdbcType=VARCHAR},
+      ACTIVITY_FLAG = #{ACTIVITY_FLAG,jdbcType=VARCHAR},
+      PAY_METHTEMPLET = #{PAY_METHTEMPLET,jdbcType=VARCHAR},
+      MNCH_METHTEMPLET = #{MNCH_METHTEMPLET,jdbcType=VARCHAR},
+      REPEAT_PHONE = #{REPEAT_PHONE,jdbcType=VARCHAR},
+      CMPLOYEE_NM = #{CMPLOYEE_NM,jdbcType=VARCHAR},
+      REPEAT_PHONE_TIME = #{REPEAT_PHONE_TIME,jdbcType=VARCHAR},
+      REPEAT_NUM = #{REPEAT_NUM,jdbcType=VARCHAR},
+      CONFERENCE_NUM = #{CONFERENCE_NUM,jdbcType=VARCHAR},
+      SATISFYS_NUM = #{SATISFYS_NUM,jdbcType=VARCHAR},
+      BUSINESS_AREA_PRO1 = #{BUSINESS_AREA_PRO1,jdbcType=VARCHAR},
+      BUSINESS_AREA_PRO2 = #{BUSINESS_AREA_PRO2,jdbcType=VARCHAR},
+      ACQ_INS_ID_CD = #{ACQ_INS_ID_CD,jdbcType=VARCHAR},
+      ACTIVITY_NAME = #{ACTIVITY_NAME,jdbcType=VARCHAR},
+      TERM_INS_ID_CD = #{TERM_INS_ID_CD,jdbcType=VARCHAR},
+      ERROR_CODE = #{ERROR_CODE,jdbcType=VARCHAR},
+      CALL_BACK_NUMBER = #{CALL_BACK_NUMBER,jdbcType=VARCHAR},
+      REMARKS = #{REMARKS,jdbcType=VARCHAR},
+      CARD_RANK = #{CARD_RANK,jdbcType=VARCHAR},
+      ISS_INS_ID = #{ISS_INS_ID,jdbcType=VARCHAR},
+      INS_CN_NM = #{INS_CN_NM,jdbcType=VARCHAR},
+      CTI_MCHNT_CD = #{CTI_MCHNT_CD,jdbcType=VARCHAR},
+      CTI_INS_ID_CD = #{CTI_INS_ID_CD,jdbcType=VARCHAR},
+      MCHNT_NM = #{MCHNT_NM,jdbcType=VARCHAR},
+      CTI_INS_ID_NM = #{CTI_INS_ID_NM,jdbcType=VARCHAR},
+      IVR_URL = #{IVR_URL,jdbcType=VARCHAR},
+      OUT_BANK = #{OUT_BANK,jdbcType=VARCHAR},
+      OUT_CARD_NUMBER = #{OUT_CARD_NUMBER,jdbcType=VARCHAR},
+      IS_OWN = #{IS_OWN,jdbcType=VARCHAR},
+      DEAL_TYPE = #{DEAL_TYPE,jdbcType=VARCHAR},
+      ACTIVITY_ID = #{ACTIVITY_ID,jdbcType=VARCHAR}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+</mapper>

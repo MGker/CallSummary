@@ -1,0 +1,903 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.callsummary.mapper.CallMapper">
+    <resultMap id="BaseResultMap" type="com.callsummary.model.Call">
+        <id column="CALLREFERENCE" jdbcType="VARCHAR" property="callreference"/>
+        <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime"/>
+        <result column="CONNECTTIME" jdbcType="TIMESTAMP" property="connecttime"/>
+        <result column="CLEARTIME" jdbcType="TIMESTAMP" property="cleartime"/>
+        <result column="DURATION" jdbcType="DECIMAL" property="duration"/>
+        <result column="EXTENSION" jdbcType="VARCHAR" property="extension"/>
+        <result column="CALLTYPE" jdbcType="DECIMAL" property="calltype"/>
+        <result column="INSERTTIME" jdbcType="DECIMAL" property="inserttime"/>
+        <result column="UPDATETIME" jdbcType="DECIMAL" property="updatetime"/>
+        <result column="OFFSETTIME" jdbcType="DECIMAL" property="offsettime"/>
+        <result column="VOICEID" jdbcType="DECIMAL" property="voiceid"/>
+        <result column="CHANNELID" jdbcType="DECIMAL" property="channelid"/>
+        <result column="AGENTID" jdbcType="VARCHAR" property="agentid"/>
+        <result column="CALLERID" jdbcType="VARCHAR" property="callerid"/>
+        <result column="CALLEDID" jdbcType="VARCHAR" property="calledid"/>
+        <result column="DEVICEID" jdbcType="VARCHAR" property="deviceid"/>
+        <result column="DIRECTION" jdbcType="CHAR" property="direction"/>
+        <result column="CTICALLID" jdbcType="VARCHAR" property="cticallid"/>
+        <result column="TRANSFERFLAG" jdbcType="CHAR" property="transferflag"/>
+        <result column="CONFERENCEFLAG" jdbcType="CHAR" property="conferenceflag"/>
+        <result column="LOCKFLAG" jdbcType="CHAR" property="lockflag"/>
+        <result column="SKILLGROUP" jdbcType="VARCHAR" property="skillgroup"/>
+        <result column="LOCKERID" jdbcType="VARCHAR" property="lockerid"/>
+        <result column="LOCKMEMO" jdbcType="VARCHAR" property="lockmemo"/>
+        <result column="ARCHIVECOUNT" jdbcType="DECIMAL" property="archivecount"/>
+        <result column="TAGCOUNT" jdbcType="DECIMAL" property="tagcount"/>
+        <result column="CUSTOMER1" jdbcType="VARCHAR" property="customer1"/>
+        <result column="CUSTOMER2" jdbcType="VARCHAR" property="customer2"/>
+        <result column="CUSTOMER3" jdbcType="VARCHAR" property="customer3"/>
+        <result column="CUSTOMER4" jdbcType="VARCHAR" property="customer4"/>
+        <result column="CUSTOMER5" jdbcType="VARCHAR" property="customer5"/>
+        <result column="CUSTOMER6" jdbcType="VARCHAR" property="customer6"/>
+        <result column="CUSTOMER7" jdbcType="VARCHAR" property="customer7"/>
+        <result column="CUSTOMER8" jdbcType="VARCHAR" property="customer8"/>
+        <result column="CUSTOMER9" jdbcType="VARCHAR" property="customer9"/>
+        <result column="CUSTOMER10" jdbcType="VARCHAR" property="customer10"/>
+        <result column="CUSTOMER11" jdbcType="VARCHAR" property="customer11"/>
+        <result column="CUSTOMER12" jdbcType="VARCHAR" property="customer12"/>
+        <result column="CUSTOMER13" jdbcType="VARCHAR" property="customer13"/>
+        <result column="CUSTOMER14" jdbcType="VARCHAR" property="customer14"/>
+        <result column="CUSTOMER15" jdbcType="VARCHAR" property="customer15"/>
+        <result column="CUSTOMER16" jdbcType="VARCHAR" property="customer16"/>
+        <result column="CUSTOMER17" jdbcType="VARCHAR" property="customer17"/>
+        <result column="CUSTOMER18" jdbcType="VARCHAR" property="customer18"/>
+        <result column="CUSTOMER19" jdbcType="VARCHAR" property="customer19"/>
+        <result column="CUSTOMER20" jdbcType="VARCHAR" property="customer20"/>
+        <result column="STATE" jdbcType="CHAR" property="state"/>
+        <result column="ENCRYPTED" jdbcType="CHAR" property="encrypted"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    CALLREFERENCE, CREATETIME, CONNECTTIME, CLEARTIME, DURATION, EXTENSION, CALLTYPE, 
+    INSERTTIME, UPDATETIME, OFFSETTIME, VOICEID, CHANNELID, AGENTID, CALLERID, CALLEDID, 
+    DEVICEID, DIRECTION, CTICALLID, TRANSFERFLAG, CONFERENCEFLAG, LOCKFLAG, SKILLGROUP, 
+    LOCKERID, LOCKMEMO, ARCHIVECOUNT, TAGCOUNT, CUSTOMER1, CUSTOMER2, CUSTOMER3, CUSTOMER4, 
+    CUSTOMER5, CUSTOMER6, CUSTOMER7, CUSTOMER8, CUSTOMER9, CUSTOMER10, CUSTOMER11, CUSTOMER12, 
+    CUSTOMER13, CUSTOMER14, CUSTOMER15, CUSTOMER16, CUSTOMER17, CUSTOMER18, CUSTOMER19, 
+    CUSTOMER20, STATE, ENCRYPTED
+  </sql>
+    <select id="selectByExample" parameterType="com.callsummary.model.CallExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from t_call
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_call
+        where CALLREFERENCE = #{callreference,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_call
+    where CALLREFERENCE = #{callreference,jdbcType=VARCHAR}
+  </delete>
+    <delete id="deleteByExample" parameterType="com.callsummary.model.CallExample">
+        delete from t_call
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.callsummary.model.Call">
+    insert into t_call (CALLREFERENCE, CREATETIME, CONNECTTIME, 
+      CLEARTIME, DURATION, EXTENSION, 
+      CALLTYPE, INSERTTIME, UPDATETIME, 
+      OFFSETTIME, VOICEID, CHANNELID, 
+      AGENTID, CALLERID, CALLEDID, 
+      DEVICEID, DIRECTION, CTICALLID, 
+      TRANSFERFLAG, CONFERENCEFLAG, LOCKFLAG, 
+      SKILLGROUP, LOCKERID, LOCKMEMO, 
+      ARCHIVECOUNT, TAGCOUNT, CUSTOMER1, 
+      CUSTOMER2, CUSTOMER3, CUSTOMER4, 
+      CUSTOMER5, CUSTOMER6, CUSTOMER7, 
+      CUSTOMER8, CUSTOMER9, CUSTOMER10, 
+      CUSTOMER11, CUSTOMER12, CUSTOMER13, 
+      CUSTOMER14, CUSTOMER15, CUSTOMER16, 
+      CUSTOMER17, CUSTOMER18, CUSTOMER19, 
+      CUSTOMER20, STATE, ENCRYPTED
+      )
+    values (#{callreference,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{connecttime,jdbcType=TIMESTAMP}, 
+      #{cleartime,jdbcType=TIMESTAMP}, #{duration,jdbcType=DECIMAL}, #{extension,jdbcType=VARCHAR}, 
+      #{calltype,jdbcType=DECIMAL}, #{inserttime,jdbcType=DECIMAL}, #{updatetime,jdbcType=DECIMAL}, 
+      #{offsettime,jdbcType=DECIMAL}, #{voiceid,jdbcType=DECIMAL}, #{channelid,jdbcType=DECIMAL}, 
+      #{agentid,jdbcType=VARCHAR}, #{callerid,jdbcType=VARCHAR}, #{calledid,jdbcType=VARCHAR}, 
+      #{deviceid,jdbcType=VARCHAR}, #{direction,jdbcType=CHAR}, #{cticallid,jdbcType=VARCHAR}, 
+      #{transferflag,jdbcType=CHAR}, #{conferenceflag,jdbcType=CHAR}, #{lockflag,jdbcType=CHAR}, 
+      #{skillgroup,jdbcType=VARCHAR}, #{lockerid,jdbcType=VARCHAR}, #{lockmemo,jdbcType=VARCHAR}, 
+      #{archivecount,jdbcType=DECIMAL}, #{tagcount,jdbcType=DECIMAL}, #{customer1,jdbcType=VARCHAR}, 
+      #{customer2,jdbcType=VARCHAR}, #{customer3,jdbcType=VARCHAR}, #{customer4,jdbcType=VARCHAR}, 
+      #{customer5,jdbcType=VARCHAR}, #{customer6,jdbcType=VARCHAR}, #{customer7,jdbcType=VARCHAR}, 
+      #{customer8,jdbcType=VARCHAR}, #{customer9,jdbcType=VARCHAR}, #{customer10,jdbcType=VARCHAR}, 
+      #{customer11,jdbcType=VARCHAR}, #{customer12,jdbcType=VARCHAR}, #{customer13,jdbcType=VARCHAR}, 
+      #{customer14,jdbcType=VARCHAR}, #{customer15,jdbcType=VARCHAR}, #{customer16,jdbcType=VARCHAR}, 
+      #{customer17,jdbcType=VARCHAR}, #{customer18,jdbcType=VARCHAR}, #{customer19,jdbcType=VARCHAR}, 
+      #{customer20,jdbcType=VARCHAR}, #{state,jdbcType=CHAR}, #{encrypted,jdbcType=CHAR}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.callsummary.model.Call">
+        insert into t_call
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="callreference != null">
+                CALLREFERENCE,
+            </if>
+            <if test="createtime != null">
+                CREATETIME,
+            </if>
+            <if test="connecttime != null">
+                CONNECTTIME,
+            </if>
+            <if test="cleartime != null">
+                CLEARTIME,
+            </if>
+            <if test="duration != null">
+                DURATION,
+            </if>
+            <if test="extension != null">
+                EXTENSION,
+            </if>
+            <if test="calltype != null">
+                CALLTYPE,
+            </if>
+            <if test="inserttime != null">
+                INSERTTIME,
+            </if>
+            <if test="updatetime != null">
+                UPDATETIME,
+            </if>
+            <if test="offsettime != null">
+                OFFSETTIME,
+            </if>
+            <if test="voiceid != null">
+                VOICEID,
+            </if>
+            <if test="channelid != null">
+                CHANNELID,
+            </if>
+            <if test="agentid != null">
+                AGENTID,
+            </if>
+            <if test="callerid != null">
+                CALLERID,
+            </if>
+            <if test="calledid != null">
+                CALLEDID,
+            </if>
+            <if test="deviceid != null">
+                DEVICEID,
+            </if>
+            <if test="direction != null">
+                DIRECTION,
+            </if>
+            <if test="cticallid != null">
+                CTICALLID,
+            </if>
+            <if test="transferflag != null">
+                TRANSFERFLAG,
+            </if>
+            <if test="conferenceflag != null">
+                CONFERENCEFLAG,
+            </if>
+            <if test="lockflag != null">
+                LOCKFLAG,
+            </if>
+            <if test="skillgroup != null">
+                SKILLGROUP,
+            </if>
+            <if test="lockerid != null">
+                LOCKERID,
+            </if>
+            <if test="lockmemo != null">
+                LOCKMEMO,
+            </if>
+            <if test="archivecount != null">
+                ARCHIVECOUNT,
+            </if>
+            <if test="tagcount != null">
+                TAGCOUNT,
+            </if>
+            <if test="customer1 != null">
+                CUSTOMER1,
+            </if>
+            <if test="customer2 != null">
+                CUSTOMER2,
+            </if>
+            <if test="customer3 != null">
+                CUSTOMER3,
+            </if>
+            <if test="customer4 != null">
+                CUSTOMER4,
+            </if>
+            <if test="customer5 != null">
+                CUSTOMER5,
+            </if>
+            <if test="customer6 != null">
+                CUSTOMER6,
+            </if>
+            <if test="customer7 != null">
+                CUSTOMER7,
+            </if>
+            <if test="customer8 != null">
+                CUSTOMER8,
+            </if>
+            <if test="customer9 != null">
+                CUSTOMER9,
+            </if>
+            <if test="customer10 != null">
+                CUSTOMER10,
+            </if>
+            <if test="customer11 != null">
+                CUSTOMER11,
+            </if>
+            <if test="customer12 != null">
+                CUSTOMER12,
+            </if>
+            <if test="customer13 != null">
+                CUSTOMER13,
+            </if>
+            <if test="customer14 != null">
+                CUSTOMER14,
+            </if>
+            <if test="customer15 != null">
+                CUSTOMER15,
+            </if>
+            <if test="customer16 != null">
+                CUSTOMER16,
+            </if>
+            <if test="customer17 != null">
+                CUSTOMER17,
+            </if>
+            <if test="customer18 != null">
+                CUSTOMER18,
+            </if>
+            <if test="customer19 != null">
+                CUSTOMER19,
+            </if>
+            <if test="customer20 != null">
+                CUSTOMER20,
+            </if>
+            <if test="state != null">
+                STATE,
+            </if>
+            <if test="encrypted != null">
+                ENCRYPTED,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="callreference != null">
+                #{callreference,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="connecttime != null">
+                #{connecttime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="cleartime != null">
+                #{cleartime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="duration != null">
+                #{duration,jdbcType=DECIMAL},
+            </if>
+            <if test="extension != null">
+                #{extension,jdbcType=VARCHAR},
+            </if>
+            <if test="calltype != null">
+                #{calltype,jdbcType=DECIMAL},
+            </if>
+            <if test="inserttime != null">
+                #{inserttime,jdbcType=DECIMAL},
+            </if>
+            <if test="updatetime != null">
+                #{updatetime,jdbcType=DECIMAL},
+            </if>
+            <if test="offsettime != null">
+                #{offsettime,jdbcType=DECIMAL},
+            </if>
+            <if test="voiceid != null">
+                #{voiceid,jdbcType=DECIMAL},
+            </if>
+            <if test="channelid != null">
+                #{channelid,jdbcType=DECIMAL},
+            </if>
+            <if test="agentid != null">
+                #{agentid,jdbcType=VARCHAR},
+            </if>
+            <if test="callerid != null">
+                #{callerid,jdbcType=VARCHAR},
+            </if>
+            <if test="calledid != null">
+                #{calledid,jdbcType=VARCHAR},
+            </if>
+            <if test="deviceid != null">
+                #{deviceid,jdbcType=VARCHAR},
+            </if>
+            <if test="direction != null">
+                #{direction,jdbcType=CHAR},
+            </if>
+            <if test="cticallid != null">
+                #{cticallid,jdbcType=VARCHAR},
+            </if>
+            <if test="transferflag != null">
+                #{transferflag,jdbcType=CHAR},
+            </if>
+            <if test="conferenceflag != null">
+                #{conferenceflag,jdbcType=CHAR},
+            </if>
+            <if test="lockflag != null">
+                #{lockflag,jdbcType=CHAR},
+            </if>
+            <if test="skillgroup != null">
+                #{skillgroup,jdbcType=VARCHAR},
+            </if>
+            <if test="lockerid != null">
+                #{lockerid,jdbcType=VARCHAR},
+            </if>
+            <if test="lockmemo != null">
+                #{lockmemo,jdbcType=VARCHAR},
+            </if>
+            <if test="archivecount != null">
+                #{archivecount,jdbcType=DECIMAL},
+            </if>
+            <if test="tagcount != null">
+                #{tagcount,jdbcType=DECIMAL},
+            </if>
+            <if test="customer1 != null">
+                #{customer1,jdbcType=VARCHAR},
+            </if>
+            <if test="customer2 != null">
+                #{customer2,jdbcType=VARCHAR},
+            </if>
+            <if test="customer3 != null">
+                #{customer3,jdbcType=VARCHAR},
+            </if>
+            <if test="customer4 != null">
+                #{customer4,jdbcType=VARCHAR},
+            </if>
+            <if test="customer5 != null">
+                #{customer5,jdbcType=VARCHAR},
+            </if>
+            <if test="customer6 != null">
+                #{customer6,jdbcType=VARCHAR},
+            </if>
+            <if test="customer7 != null">
+                #{customer7,jdbcType=VARCHAR},
+            </if>
+            <if test="customer8 != null">
+                #{customer8,jdbcType=VARCHAR},
+            </if>
+            <if test="customer9 != null">
+                #{customer9,jdbcType=VARCHAR},
+            </if>
+            <if test="customer10 != null">
+                #{customer10,jdbcType=VARCHAR},
+            </if>
+            <if test="customer11 != null">
+                #{customer11,jdbcType=VARCHAR},
+            </if>
+            <if test="customer12 != null">
+                #{customer12,jdbcType=VARCHAR},
+            </if>
+            <if test="customer13 != null">
+                #{customer13,jdbcType=VARCHAR},
+            </if>
+            <if test="customer14 != null">
+                #{customer14,jdbcType=VARCHAR},
+            </if>
+            <if test="customer15 != null">
+                #{customer15,jdbcType=VARCHAR},
+            </if>
+            <if test="customer16 != null">
+                #{customer16,jdbcType=VARCHAR},
+            </if>
+            <if test="customer17 != null">
+                #{customer17,jdbcType=VARCHAR},
+            </if>
+            <if test="customer18 != null">
+                #{customer18,jdbcType=VARCHAR},
+            </if>
+            <if test="customer19 != null">
+                #{customer19,jdbcType=VARCHAR},
+            </if>
+            <if test="customer20 != null">
+                #{customer20,jdbcType=VARCHAR},
+            </if>
+            <if test="state != null">
+                #{state,jdbcType=CHAR},
+            </if>
+            <if test="encrypted != null">
+                #{encrypted,jdbcType=CHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.callsummary.model.CallExample" resultType="java.lang.Long">
+        select count(*) from t_call
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <select id="selectTodayNotHasSummaryCallList" resultType="com.callsummary.model.Call">
+        select tc.* from t_call tc
+        left join callsummary cs on tc.CALLREFERENCE=cs.CALLREFERENCE
+        where cs.CALLREFERENCE is null and
+        tc.DIRECTION in ('I','1') and
+        tc.CONNECTTIME BETWEEN str_to_date(DATE_FORMAT(DATE_SUB(curdate(),INTERVAL 1 DAY),'%Y-%m-%d 23:59:00'),'%Y-%m-%d %H:%i:%s')
+        and str_to_date(DATE_FORMAT(NOW(),'%Y-%m-%d 23:59:00'),'%Y-%m-%d %H:%i:%s')
+
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update t_call
+        <set>
+            <if test="record.callreference != null">
+                CALLREFERENCE = #{record.callreference,jdbcType=VARCHAR},
+            </if>
+            <if test="record.createtime != null">
+                CREATETIME = #{record.createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.connecttime != null">
+                CONNECTTIME = #{record.connecttime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.cleartime != null">
+                CLEARTIME = #{record.cleartime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.duration != null">
+                DURATION = #{record.duration,jdbcType=DECIMAL},
+            </if>
+            <if test="record.extension != null">
+                EXTENSION = #{record.extension,jdbcType=VARCHAR},
+            </if>
+            <if test="record.calltype != null">
+                CALLTYPE = #{record.calltype,jdbcType=DECIMAL},
+            </if>
+            <if test="record.inserttime != null">
+                INSERTTIME = #{record.inserttime,jdbcType=DECIMAL},
+            </if>
+            <if test="record.updatetime != null">
+                UPDATETIME = #{record.updatetime,jdbcType=DECIMAL},
+            </if>
+            <if test="record.offsettime != null">
+                OFFSETTIME = #{record.offsettime,jdbcType=DECIMAL},
+            </if>
+            <if test="record.voiceid != null">
+                VOICEID = #{record.voiceid,jdbcType=DECIMAL},
+            </if>
+            <if test="record.channelid != null">
+                CHANNELID = #{record.channelid,jdbcType=DECIMAL},
+            </if>
+            <if test="record.agentid != null">
+                AGENTID = #{record.agentid,jdbcType=VARCHAR},
+            </if>
+            <if test="record.callerid != null">
+                CALLERID = #{record.callerid,jdbcType=VARCHAR},
+            </if>
+            <if test="record.calledid != null">
+                CALLEDID = #{record.calledid,jdbcType=VARCHAR},
+            </if>
+            <if test="record.deviceid != null">
+                DEVICEID = #{record.deviceid,jdbcType=VARCHAR},
+            </if>
+            <if test="record.direction != null">
+                DIRECTION = #{record.direction,jdbcType=CHAR},
+            </if>
+            <if test="record.cticallid != null">
+                CTICALLID = #{record.cticallid,jdbcType=VARCHAR},
+            </if>
+            <if test="record.transferflag != null">
+                TRANSFERFLAG = #{record.transferflag,jdbcType=CHAR},
+            </if>
+            <if test="record.conferenceflag != null">
+                CONFERENCEFLAG = #{record.conferenceflag,jdbcType=CHAR},
+            </if>
+            <if test="record.lockflag != null">
+                LOCKFLAG = #{record.lockflag,jdbcType=CHAR},
+            </if>
+            <if test="record.skillgroup != null">
+                SKILLGROUP = #{record.skillgroup,jdbcType=VARCHAR},
+            </if>
+            <if test="record.lockerid != null">
+                LOCKERID = #{record.lockerid,jdbcType=VARCHAR},
+            </if>
+            <if test="record.lockmemo != null">
+                LOCKMEMO = #{record.lockmemo,jdbcType=VARCHAR},
+            </if>
+            <if test="record.archivecount != null">
+                ARCHIVECOUNT = #{record.archivecount,jdbcType=DECIMAL},
+            </if>
+            <if test="record.tagcount != null">
+                TAGCOUNT = #{record.tagcount,jdbcType=DECIMAL},
+            </if>
+            <if test="record.customer1 != null">
+                CUSTOMER1 = #{record.customer1,jdbcType=VARCHAR},
+            </if>
+            <if test="record.customer2 != null">
+                CUSTOMER2 = #{record.customer2,jdbcType=VARCHAR},
+            </if>
+            <if test="record.customer3 != null">
+                CUSTOMER3 = #{record.customer3,jdbcType=VARCHAR},
+            </if>
+            <if test="record.customer4 != null">
+                CUSTOMER4 = #{record.customer4,jdbcType=VARCHAR},
+            </if>
+            <if test="record.customer5 != null">
+                CUSTOMER5 = #{record.customer5,jdbcType=VARCHAR},
+            </if>
+            <if test="record.customer6 != null">
+                CUSTOMER6 = #{record.customer6,jdbcType=VARCHAR},
+            </if>
+            <if test="record.customer7 != null">
+                CUSTOMER7 = #{record.customer7,jdbcType=VARCHAR},
+            </if>
+            <if test="record.customer8 != null">
+                CUSTOMER8 = #{record.customer8,jdbcType=VARCHAR},
+            </if>
+            <if test="record.customer9 != null">
+                CUSTOMER9 = #{record.customer9,jdbcType=VARCHAR},
+            </if>
+            <if test="record.customer10 != null">
+                CUSTOMER10 = #{record.customer10,jdbcType=VARCHAR},
+            </if>
+            <if test="record.customer11 != null">
+                CUSTOMER11 = #{record.customer11,jdbcType=VARCHAR},
+            </if>
+            <if test="record.customer12 != null">
+                CUSTOMER12 = #{record.customer12,jdbcType=VARCHAR},
+            </if>
+            <if test="record.customer13 != null">
+                CUSTOMER13 = #{record.customer13,jdbcType=VARCHAR},
+            </if>
+            <if test="record.customer14 != null">
+                CUSTOMER14 = #{record.customer14,jdbcType=VARCHAR},
+            </if>
+            <if test="record.customer15 != null">
+                CUSTOMER15 = #{record.customer15,jdbcType=VARCHAR},
+            </if>
+            <if test="record.customer16 != null">
+                CUSTOMER16 = #{record.customer16,jdbcType=VARCHAR},
+            </if>
+            <if test="record.customer17 != null">
+                CUSTOMER17 = #{record.customer17,jdbcType=VARCHAR},
+            </if>
+            <if test="record.customer18 != null">
+                CUSTOMER18 = #{record.customer18,jdbcType=VARCHAR},
+            </if>
+            <if test="record.customer19 != null">
+                CUSTOMER19 = #{record.customer19,jdbcType=VARCHAR},
+            </if>
+            <if test="record.customer20 != null">
+                CUSTOMER20 = #{record.customer20,jdbcType=VARCHAR},
+            </if>
+            <if test="record.state != null">
+                STATE = #{record.state,jdbcType=CHAR},
+            </if>
+            <if test="record.encrypted != null">
+                ENCRYPTED = #{record.encrypted,jdbcType=CHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update t_call
+        set CALLREFERENCE = #{record.callreference,jdbcType=VARCHAR},
+        CREATETIME = #{record.createtime,jdbcType=TIMESTAMP},
+        CONNECTTIME = #{record.connecttime,jdbcType=TIMESTAMP},
+        CLEARTIME = #{record.cleartime,jdbcType=TIMESTAMP},
+        DURATION = #{record.duration,jdbcType=DECIMAL},
+        EXTENSION = #{record.extension,jdbcType=VARCHAR},
+        CALLTYPE = #{record.calltype,jdbcType=DECIMAL},
+        INSERTTIME = #{record.inserttime,jdbcType=DECIMAL},
+        UPDATETIME = #{record.updatetime,jdbcType=DECIMAL},
+        OFFSETTIME = #{record.offsettime,jdbcType=DECIMAL},
+        VOICEID = #{record.voiceid,jdbcType=DECIMAL},
+        CHANNELID = #{record.channelid,jdbcType=DECIMAL},
+        AGENTID = #{record.agentid,jdbcType=VARCHAR},
+        CALLERID = #{record.callerid,jdbcType=VARCHAR},
+        CALLEDID = #{record.calledid,jdbcType=VARCHAR},
+        DEVICEID = #{record.deviceid,jdbcType=VARCHAR},
+        DIRECTION = #{record.direction,jdbcType=CHAR},
+        CTICALLID = #{record.cticallid,jdbcType=VARCHAR},
+        TRANSFERFLAG = #{record.transferflag,jdbcType=CHAR},
+        CONFERENCEFLAG = #{record.conferenceflag,jdbcType=CHAR},
+        LOCKFLAG = #{record.lockflag,jdbcType=CHAR},
+        SKILLGROUP = #{record.skillgroup,jdbcType=VARCHAR},
+        LOCKERID = #{record.lockerid,jdbcType=VARCHAR},
+        LOCKMEMO = #{record.lockmemo,jdbcType=VARCHAR},
+        ARCHIVECOUNT = #{record.archivecount,jdbcType=DECIMAL},
+        TAGCOUNT = #{record.tagcount,jdbcType=DECIMAL},
+        CUSTOMER1 = #{record.customer1,jdbcType=VARCHAR},
+        CUSTOMER2 = #{record.customer2,jdbcType=VARCHAR},
+        CUSTOMER3 = #{record.customer3,jdbcType=VARCHAR},
+        CUSTOMER4 = #{record.customer4,jdbcType=VARCHAR},
+        CUSTOMER5 = #{record.customer5,jdbcType=VARCHAR},
+        CUSTOMER6 = #{record.customer6,jdbcType=VARCHAR},
+        CUSTOMER7 = #{record.customer7,jdbcType=VARCHAR},
+        CUSTOMER8 = #{record.customer8,jdbcType=VARCHAR},
+        CUSTOMER9 = #{record.customer9,jdbcType=VARCHAR},
+        CUSTOMER10 = #{record.customer10,jdbcType=VARCHAR},
+        CUSTOMER11 = #{record.customer11,jdbcType=VARCHAR},
+        CUSTOMER12 = #{record.customer12,jdbcType=VARCHAR},
+        CUSTOMER13 = #{record.customer13,jdbcType=VARCHAR},
+        CUSTOMER14 = #{record.customer14,jdbcType=VARCHAR},
+        CUSTOMER15 = #{record.customer15,jdbcType=VARCHAR},
+        CUSTOMER16 = #{record.customer16,jdbcType=VARCHAR},
+        CUSTOMER17 = #{record.customer17,jdbcType=VARCHAR},
+        CUSTOMER18 = #{record.customer18,jdbcType=VARCHAR},
+        CUSTOMER19 = #{record.customer19,jdbcType=VARCHAR},
+        CUSTOMER20 = #{record.customer20,jdbcType=VARCHAR},
+        STATE = #{record.state,jdbcType=CHAR},
+        ENCRYPTED = #{record.encrypted,jdbcType=CHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.callsummary.model.Call">
+        update t_call
+        <set>
+            <if test="createtime != null">
+                CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="connecttime != null">
+                CONNECTTIME = #{connecttime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="cleartime != null">
+                CLEARTIME = #{cleartime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="duration != null">
+                DURATION = #{duration,jdbcType=DECIMAL},
+            </if>
+            <if test="extension != null">
+                EXTENSION = #{extension,jdbcType=VARCHAR},
+            </if>
+            <if test="calltype != null">
+                CALLTYPE = #{calltype,jdbcType=DECIMAL},
+            </if>
+            <if test="inserttime != null">
+                INSERTTIME = #{inserttime,jdbcType=DECIMAL},
+            </if>
+            <if test="updatetime != null">
+                UPDATETIME = #{updatetime,jdbcType=DECIMAL},
+            </if>
+            <if test="offsettime != null">
+                OFFSETTIME = #{offsettime,jdbcType=DECIMAL},
+            </if>
+            <if test="voiceid != null">
+                VOICEID = #{voiceid,jdbcType=DECIMAL},
+            </if>
+            <if test="channelid != null">
+                CHANNELID = #{channelid,jdbcType=DECIMAL},
+            </if>
+            <if test="agentid != null">
+                AGENTID = #{agentid,jdbcType=VARCHAR},
+            </if>
+            <if test="callerid != null">
+                CALLERID = #{callerid,jdbcType=VARCHAR},
+            </if>
+            <if test="calledid != null">
+                CALLEDID = #{calledid,jdbcType=VARCHAR},
+            </if>
+            <if test="deviceid != null">
+                DEVICEID = #{deviceid,jdbcType=VARCHAR},
+            </if>
+            <if test="direction != null">
+                DIRECTION = #{direction,jdbcType=CHAR},
+            </if>
+            <if test="cticallid != null">
+                CTICALLID = #{cticallid,jdbcType=VARCHAR},
+            </if>
+            <if test="transferflag != null">
+                TRANSFERFLAG = #{transferflag,jdbcType=CHAR},
+            </if>
+            <if test="conferenceflag != null">
+                CONFERENCEFLAG = #{conferenceflag,jdbcType=CHAR},
+            </if>
+            <if test="lockflag != null">
+                LOCKFLAG = #{lockflag,jdbcType=CHAR},
+            </if>
+            <if test="skillgroup != null">
+                SKILLGROUP = #{skillgroup,jdbcType=VARCHAR},
+            </if>
+            <if test="lockerid != null">
+                LOCKERID = #{lockerid,jdbcType=VARCHAR},
+            </if>
+            <if test="lockmemo != null">
+                LOCKMEMO = #{lockmemo,jdbcType=VARCHAR},
+            </if>
+            <if test="archivecount != null">
+                ARCHIVECOUNT = #{archivecount,jdbcType=DECIMAL},
+            </if>
+            <if test="tagcount != null">
+                TAGCOUNT = #{tagcount,jdbcType=DECIMAL},
+            </if>
+            <if test="customer1 != null">
+                CUSTOMER1 = #{customer1,jdbcType=VARCHAR},
+            </if>
+            <if test="customer2 != null">
+                CUSTOMER2 = #{customer2,jdbcType=VARCHAR},
+            </if>
+            <if test="customer3 != null">
+                CUSTOMER3 = #{customer3,jdbcType=VARCHAR},
+            </if>
+            <if test="customer4 != null">
+                CUSTOMER4 = #{customer4,jdbcType=VARCHAR},
+            </if>
+            <if test="customer5 != null">
+                CUSTOMER5 = #{customer5,jdbcType=VARCHAR},
+            </if>
+            <if test="customer6 != null">
+                CUSTOMER6 = #{customer6,jdbcType=VARCHAR},
+            </if>
+            <if test="customer7 != null">
+                CUSTOMER7 = #{customer7,jdbcType=VARCHAR},
+            </if>
+            <if test="customer8 != null">
+                CUSTOMER8 = #{customer8,jdbcType=VARCHAR},
+            </if>
+            <if test="customer9 != null">
+                CUSTOMER9 = #{customer9,jdbcType=VARCHAR},
+            </if>
+            <if test="customer10 != null">
+                CUSTOMER10 = #{customer10,jdbcType=VARCHAR},
+            </if>
+            <if test="customer11 != null">
+                CUSTOMER11 = #{customer11,jdbcType=VARCHAR},
+            </if>
+            <if test="customer12 != null">
+                CUSTOMER12 = #{customer12,jdbcType=VARCHAR},
+            </if>
+            <if test="customer13 != null">
+                CUSTOMER13 = #{customer13,jdbcType=VARCHAR},
+            </if>
+            <if test="customer14 != null">
+                CUSTOMER14 = #{customer14,jdbcType=VARCHAR},
+            </if>
+            <if test="customer15 != null">
+                CUSTOMER15 = #{customer15,jdbcType=VARCHAR},
+            </if>
+            <if test="customer16 != null">
+                CUSTOMER16 = #{customer16,jdbcType=VARCHAR},
+            </if>
+            <if test="customer17 != null">
+                CUSTOMER17 = #{customer17,jdbcType=VARCHAR},
+            </if>
+            <if test="customer18 != null">
+                CUSTOMER18 = #{customer18,jdbcType=VARCHAR},
+            </if>
+            <if test="customer19 != null">
+                CUSTOMER19 = #{customer19,jdbcType=VARCHAR},
+            </if>
+            <if test="customer20 != null">
+                CUSTOMER20 = #{customer20,jdbcType=VARCHAR},
+            </if>
+            <if test="state != null">
+                STATE = #{state,jdbcType=CHAR},
+            </if>
+            <if test="encrypted != null">
+                ENCRYPTED = #{encrypted,jdbcType=CHAR},
+            </if>
+        </set>
+        where CALLREFERENCE = #{callreference,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.callsummary.model.Call">
+    update t_call
+    set CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      CONNECTTIME = #{connecttime,jdbcType=TIMESTAMP},
+      CLEARTIME = #{cleartime,jdbcType=TIMESTAMP},
+      DURATION = #{duration,jdbcType=DECIMAL},
+      EXTENSION = #{extension,jdbcType=VARCHAR},
+      CALLTYPE = #{calltype,jdbcType=DECIMAL},
+      INSERTTIME = #{inserttime,jdbcType=DECIMAL},
+      UPDATETIME = #{updatetime,jdbcType=DECIMAL},
+      OFFSETTIME = #{offsettime,jdbcType=DECIMAL},
+      VOICEID = #{voiceid,jdbcType=DECIMAL},
+      CHANNELID = #{channelid,jdbcType=DECIMAL},
+      AGENTID = #{agentid,jdbcType=VARCHAR},
+      CALLERID = #{callerid,jdbcType=VARCHAR},
+      CALLEDID = #{calledid,jdbcType=VARCHAR},
+      DEVICEID = #{deviceid,jdbcType=VARCHAR},
+      DIRECTION = #{direction,jdbcType=CHAR},
+      CTICALLID = #{cticallid,jdbcType=VARCHAR},
+      TRANSFERFLAG = #{transferflag,jdbcType=CHAR},
+      CONFERENCEFLAG = #{conferenceflag,jdbcType=CHAR},
+      LOCKFLAG = #{lockflag,jdbcType=CHAR},
+      SKILLGROUP = #{skillgroup,jdbcType=VARCHAR},
+      LOCKERID = #{lockerid,jdbcType=VARCHAR},
+      LOCKMEMO = #{lockmemo,jdbcType=VARCHAR},
+      ARCHIVECOUNT = #{archivecount,jdbcType=DECIMAL},
+      TAGCOUNT = #{tagcount,jdbcType=DECIMAL},
+      CUSTOMER1 = #{customer1,jdbcType=VARCHAR},
+      CUSTOMER2 = #{customer2,jdbcType=VARCHAR},
+      CUSTOMER3 = #{customer3,jdbcType=VARCHAR},
+      CUSTOMER4 = #{customer4,jdbcType=VARCHAR},
+      CUSTOMER5 = #{customer5,jdbcType=VARCHAR},
+      CUSTOMER6 = #{customer6,jdbcType=VARCHAR},
+      CUSTOMER7 = #{customer7,jdbcType=VARCHAR},
+      CUSTOMER8 = #{customer8,jdbcType=VARCHAR},
+      CUSTOMER9 = #{customer9,jdbcType=VARCHAR},
+      CUSTOMER10 = #{customer10,jdbcType=VARCHAR},
+      CUSTOMER11 = #{customer11,jdbcType=VARCHAR},
+      CUSTOMER12 = #{customer12,jdbcType=VARCHAR},
+      CUSTOMER13 = #{customer13,jdbcType=VARCHAR},
+      CUSTOMER14 = #{customer14,jdbcType=VARCHAR},
+      CUSTOMER15 = #{customer15,jdbcType=VARCHAR},
+      CUSTOMER16 = #{customer16,jdbcType=VARCHAR},
+      CUSTOMER17 = #{customer17,jdbcType=VARCHAR},
+      CUSTOMER18 = #{customer18,jdbcType=VARCHAR},
+      CUSTOMER19 = #{customer19,jdbcType=VARCHAR},
+      CUSTOMER20 = #{customer20,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=CHAR},
+      ENCRYPTED = #{encrypted,jdbcType=CHAR}
+    where CALLREFERENCE = #{callreference,jdbcType=VARCHAR}
+  </update>
+</mapper>

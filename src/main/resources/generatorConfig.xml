@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--<classPathEntry location="E:\maven_repo\repository\com\oracle\ojdbc6\11.2.0.4\ojdbc6-11.2.0.4.jar"/>-->
+    <!--<classPathEntry location="E:\maven_repo\repository\com\oracle\ojdbc6\11.2.0.4\ojdbc6-11.2.0.4.jar"/>-->
+    <!--<classPathEntry location="D:\ojdbc6.jar"/>-->
+    <!--<classPathEntry location="e:/manualJar/ojdbc7.jar"/>-->
+    <classPathEntry location="E:\\manualJar\\mysql-connector-java-5.1.30.jar"/>
+    <context id="testTables" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+        <!--<jdbcConnection driverClass="${jdbc.driver}"-->
+        <!--connectionURL="${jdbc.url}"-->
+        <!--userId="${jdbc.username}"-->
+        <!--password="${jdbc.password}">-->
+        <!--</jdbcConnection>-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://192.168.6.29:3306/rlog"
+                        userId="RLOG"
+                        password="RLOG1234">
+        </jdbcConnection>
+
+        <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
+            NUMERIC 类型解析为java.math.BigDecimal -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!-- targetProject:生成PO类的位置 -->
+        <javaModelGenerator targetPackage="com.callsummary.model"
+                            targetProject="src\main\java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+            <!-- 从数据库返回的值被清理前后的空格 -->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!-- targetProject:mapper映射文件生成的位置 -->
+        <sqlMapGenerator targetPackage="resources\mapper"
+                         targetProject="src\main">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+        <!-- targetPackage：mapper接口生成的位置 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.callsummary.mapper"
+                             targetProject="src\main\java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+        <!-- 指定数据库表 -->
+
+        <!--<table tableName="T_LOGINPARAMETER" domainObjectName="LoginParameter"/>-->
+        <!--<table tableName="T_RS_CONFIGURATION" domainObjectName="RsConfiguration"/>-->
+        <!--<table tableName="T_HISTORY_QUERY" domainObjectName="HistoryQuery"/>-->
+        <!--<table tableName="T_CALL" domainObjectName="Call"/>-->
+        <table tableName="callsummary" domainObjectName="CallSummary">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+        <!--<table tableName="T_AUDIO" domainObjectName="Audio"/>-->
+
+
+
+        <!--<table tableName="T_ORGANIZATION" domainObjectName="Organization"></table>-->
+       <!-- <table tableName="T_RETENTION_POLICY" domainObjectName="RetentionPolicy"></table>-->
+
+        <!--<table tableName="T_CALL" domainObjectName="Call"></table>-->
+     <!--   <table tableName="T_AUDIO" domainObjectName="Audio"></table>
+        <table tableName="T_EXTENSION" domainObjectName="Extension"></table>
+        <table tableName="T_ORGANIZATION" domainObjectName="Organization"></table>
+        <table tableName="T_PERMISSION" domainObjectName="Permission"></table>
+        <table tableName="T_ROLE" domainObjectName="Role"></table>
+        <table tableName="T_SKILLGROUP" domainObjectName="SkillGroup"></table>
+        <table tableName="T_USER" domainObjectName="User"></table>
+        <table tableName="T_VIDEO" domainObjectName="Video"></table>-->
+        <!--&lt;!&ndash;<table tableName="media" domainObjectName="Media">-->
+        <!--<table tableName="Media"></table>-->
+        <!--<table tableName="rights"></table>-->
+        <!--<table tableName="device"></table>-->
+        <!-- 有些表的字段需要指定java类型
+         <table schema="" tableName="">
+            <columnOverride column="" javaType="" />
+        </table> -->
+    </context>
+</generatorConfiguration>
