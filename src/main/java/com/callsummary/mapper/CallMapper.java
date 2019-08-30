@@ -2,6 +2,8 @@ package com.callsummary.mapper;
 
 import com.callsummary.model.Call;
 import com.callsummary.model.CallExample;
+
+import java.util.Date;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -32,5 +34,5 @@ public interface CallMapper {
      * 获取当天没有电话小结的录音记录集合
      * @return
      */
-    List<Call> selectTodayNotHasSummaryCallList();
+    List<Call> selectNotHasSummaryCallList(@Param("startDate") Long startTime, @Param("endDate")Long endDate);
 }

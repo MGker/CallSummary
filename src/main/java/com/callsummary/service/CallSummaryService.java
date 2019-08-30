@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -107,7 +108,9 @@ public class CallSummaryService {
         List<String> directionList = new ArrayList();
         directionList.add("I");
         directionList.add("1");
-        callExample.createCriteria().andConnecttimeBetween(startTime, endTime)//指定时间段
+        BigDecimal startTimeVal = new BigDecimal(startTime.getTime());
+        BigDecimal endTimeVal = new BigDecimal(endTime.getTime());
+        callExample.createCriteria().andInserttimeBetween(startTimeVal, endTimeVal)//指定时间段
                 .andCticallidIsNotNull()//有Cti流水号
                 .andDirectionIn(directionList);//电话呼入的记录
 

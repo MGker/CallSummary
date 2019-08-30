@@ -487,13 +487,13 @@
             <include refid="Example_Where_Clause"/>
         </if>
     </select>
-    <select id="selectTodayNotHasSummaryCallList" resultType="com.callsummary.model.Call">
-        select tc.* from t_call tc
-        left join callsummary cs on tc.CALLREFERENCE=cs.CALLREFERENCE
-        where cs.CALLREFERENCE is null and
-        tc.DIRECTION in ('I','1') and
-        tc.CONNECTTIME BETWEEN str_to_date(DATE_FORMAT(DATE_SUB(curdate(),INTERVAL 1 DAY),'%Y-%m-%d 23:59:00'),'%Y-%m-%d %H:%i:%s')
-        and str_to_date(DATE_FORMAT(NOW(),'%Y-%m-%d 23:59:00'),'%Y-%m-%d %H:%i:%s')
+    <select id="selectNotHasSummaryCallList" resultType="com.callsummary.model.Call">
+        SELECT TC.* FROM T_CALL TC
+        LEFT JOIN CALLSUMMARY CS ON TC.CALLREFERENCE=CS.CALLREFERENCE
+        WHERE CS.CALLREFERENCE IS NULL AND
+        TC.DIRECTION IN ('I','1') AND
+        TC.INSERTTIME &gt; #{startDate}
+        and TC.INSERTTIME &lt; #{endDate}
 
     </select>
     <update id="updateByExampleSelective" parameterType="map">

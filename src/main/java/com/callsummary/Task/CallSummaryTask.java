@@ -71,7 +71,7 @@ public class CallSummaryTask extends TimerTask {
     @Override
     public void run() {
         calendar.setTime(new Date());
-        calendar.add(Calendar.MINUTE, -1);//查询的结束时间为当前时间前1分钟
+//        calendar.add(Calendar.MINUTE, -1);//查询的结束时间为当前时间前1分钟
         Date endTime = calendar.getTime();
         logger.info("定时任务执行:[{}-{}]",sdf.format(startTime),sdf.format(endTime));
         callSummaryService.writeTimeDurationCallSummaryInfo(startTime, endTime);
