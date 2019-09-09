@@ -28,7 +28,7 @@ import java.util.*;
  * @Date: 2019-8-9 16:43
  * @Description:
  */
-@PropertySource("classpath:config.properties")
+@PropertySource("file:config.properties")
 @Service
 public class CallSummaryService {
     private Logger logger = LoggerFactory.getLogger(CallSummaryService.class);

@@ -12,7 +12,7 @@
     </appender>
 
     <appender name="LogFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>c:/logs/callsummary/${log.name}.log</File>
+        <File>logs/callsummary/${log.name}.log</File>
         <Append>true</Append>
         <encoder>
             <pattern>%d [%t] %p %logger{0} - %m%n</pattern>
@@ -23,7 +23,7 @@
 
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <!-- 每天一归档 -->
-            <fileNamePattern>d:/logs/callsummary/${log.name}-%d{yyyy-MM-dd}-%i.log.zip</fileNamePattern>
+            <fileNamePattern>logs/callsummary/${log.name}-%d{yyyy-MM-dd}-%i.log.zip</fileNamePattern>
             <maxFileSize>48MB</maxFileSize>
             <maxHistory>31</maxHistory>
             <totalSizeCap>10GB</totalSizeCap>

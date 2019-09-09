@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
@@ -24,7 +25,8 @@ import java.util.concurrent.TimeUnit;
  * @Date: 2019-8-9 11:47
  * @Description: 录音小结 定时任务类
  */
-@PropertySource("classpath:config.properties")
+@PropertySource("file:config.properties")
+//@ConfigurationProperties(prefix = "busi-udid-mapper")
 @Component
 public class CallSummaryTask extends TimerTask {
     private Logger logger = LoggerFactory.getLogger(CallSummaryTask.class);
